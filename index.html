@@ -1,0 +1,1018 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduGlow</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="icon" type="image/png" href="2.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="EduGlow.css" />
+  </head>
+
+  <body>
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-eduglow sticky-top">
+      <div class="container">
+        <a class="navbar-brand navbar-brand-glow fw-bold" href="#">
+          <i class="bi bi-mortarboard-fill text-success"></i>
+          <p>
+            EduGlow
+
+            <small style="font-size: 9px">by Alok Rajpoot</small>
+          </p>
+          <span class="brand-badge">PRO v2</span>
+        </a>
+
+        <button
+          class="navbar-toggler border-0 shadow-none"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+        >
+          <i class="bi bi-list fs-2 text-white"></i>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+          <ul class="navbar-nav align-items-lg-center">
+            <li class="nav-item">
+              <a class="nav-link active" href="#"
+                ><i class="bi bi-house-door me-1"></i> Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#notesSection"
+                ><i class="bi bi-journal-bookmark me-1"></i> Browse Notes</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+              >
+                <i class="bi bi-grid-fill me-1"></i> Tracks
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-3"
+              >
+                <li>
+                  <a class="dropdown-item py-2" href="#notesSection"
+                    ><i class="bi bi-code-slash text-success me-2"></i
+                    >Full-Stack MERN</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item py-2" href="#notesSection"
+                    ><i class="bi bi-cpu text-primary me-2"></i>Java & Core
+                    OOP</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item py-2" href="#notesSection"
+                    ><i class="bi bi-diagram-3 text-warning me-2"></i>Python &
+                    Automation</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item py-2" href="#notesSection"
+                    ><i class="bi bi-database text-danger me-2"></i>Data Mining
+                    & SQL</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#whyEduGlow"
+                ><i class="bi bi-stars me-1"></i> Features</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contactSection"
+                ><i class="bi bi-envelope me-1"></i> Contact</a
+              >
+            </li>
+            <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+              <a href="#notesSection" class="btn btn-emerald btn-sm px-3 py-2">
+                <i class="bi bi-cloud-arrow-down me-1"></i> Get Notes Free
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ================= HERO SECTION ================= -->
+    <header class="hero-wrapper">
+      <div class="hero-mesh"></div>
+      <div class="container position-relative">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7 text-center text-lg-start">
+            <div class="hero-badge-pill">
+              <i class="bi bi-fire"></i> Engineering Notes, Solved Papers &
+              Cheatsheets
+            </div>
+            <h1 class="hero-title mb-4">
+              Master Technical Concepts with
+              <span class="text-gradient-green">EduGlow</span> Notes.
+            </h1>
+            <p class="lead text-white-50 mb-4 pe-lg-4 fs-6">
+              Curated, high-yield engineering notes crafted for computer science
+              and MCA/B.Tech students. Master Java, Python, MERN stack
+              development, and Database systems with clear code walkthroughs.
+            </p>
+
+            <!-- Search Input Bar -->
+            <div
+              class="p-2 bg-white rounded-4 shadow-lg mb-4 d-flex align-items-center"
+              style="max-width: 540px"
+            >
+              <i class="bi bi-search text-muted fs-5 ms-3"></i>
+              <input
+                type="text"
+                id="searchInput"
+                class="form-control border-0 shadow-none px-3"
+                placeholder="Search notes e.g., React, Java, MongoDB..."
+              />
+              <button class="btn btn-emerald px-4 py-2" onclick="searchNotes()">
+                Search
+              </button>
+            </div>
+
+            <div
+              class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start"
+            >
+              <span
+                class="badge bg-white bg-opacity-10 text-light py-2 px-3 rounded-pill fw-normal"
+              >
+                <i class="bi bi-check-circle-fill text-success me-1"></i> 100%
+                Free Access
+              </span>
+              <span
+                class="badge bg-white bg-opacity-10 text-light py-2 px-3 rounded-pill fw-normal"
+              >
+                <i class="bi bi-check-circle-fill text-success me-1"></i> Exam
+                Ready PDFs
+              </span>
+              <span
+                class="badge bg-white bg-opacity-10 text-light py-2 px-3 rounded-pill fw-normal"
+              >
+                <i class="bi bi-check-circle-fill text-success me-1"></i> Clean
+                Code Examples
+              </span>
+            </div>
+          </div>
+
+          <!-- Interactive Hero Image / Card Preview -->
+          <div class="col-lg-5">
+            <div
+              class="card border-0 rounded-4 overflow-hidden shadow-2-strong bg-dark text-white p-3 border border-secondary border-opacity-25"
+            >
+              <div
+                class="d-flex justify-content-between align-items-center pb-2 border-bottom border-secondary border-opacity-25 mb-3"
+              >
+                <div class="d-flex gap-2">
+                  <span
+                    class="rounded-circle bg-danger"
+                    style="width: 12px; height: 12px"
+                  ></span>
+                  <span
+                    class="rounded-circle bg-warning"
+                    style="width: 12px; height: 12px"
+                  ></span>
+                  <span
+                    class="rounded-circle bg-success"
+                    style="width: 12px; height: 12px"
+                  ></span>
+                </div>
+                <small class="text-white-50 font-monospace"
+                  >QuickSnippet.js</small
+                >
+              </div>
+              <pre
+                class="font-monospace text-success small mb-0"
+                style="font-size: 0.85rem"
+              ><code>// Modern Async/Await Fetch Pattern
+async function loadEduGlowNotes() {
+    try {
+        const res = await fetch('/api/notes');
+        const notes = await res.json();
+        console.log("Loaded successfully!", notes);
+    } catch (err) {
+        console.error("API error:", err);
+    }
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= STATS COUNTER RIBBON ================= -->
+    <div class="container">
+      <div class="stats-ribbon">
+        <div class="row g-0 divide-y divide-md-0">
+          <div class="col-6 col-md-3 stat-item border-end">
+            <div class="stat-number">15,000+</div>
+            <div class="text-muted small fw-medium">Active Students</div>
+          </div>
+          <div class="col-6 col-md-3 stat-item border-end">
+            <div class="stat-number">120+</div>
+            <div class="text-muted small fw-medium">Curated Topics</div>
+          </div>
+          <div class="col-6 col-md-3 stat-item border-end">
+            <div class="stat-number">4.9 / 5</div>
+            <div class="text-muted small fw-medium">Student Rating</div>
+          </div>
+          <div class="col-6 col-md-3 stat-item">
+            <div class="stat-number">Free</div>
+            <div class="text-muted small fw-medium">Open Source Notes</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= NOTES DIRECTORY SECTION ================= -->
+    <section class="container py-5 mt-4" id="notesSection">
+      <div class="text-center mb-4">
+        <span
+          class="badge bg-success bg-opacity-10 text-success fw-bold px-3 py-2 rounded-pill"
+          >Repository</span
+        >
+        <h2 class="display-6 fw-bold mt-2">Explore Subject Notes</h2>
+        <p class="text-muted">
+          Filtered by category with real code implementations, diagrams, and
+          cheat sheets.
+        </p>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="d-flex flex-wrap justify-content-center gap-2 mb-5">
+        <button class="filter-btn active" onclick="filterCategory('all', this)">
+          All Subjects
+        </button>
+        <button class="filter-btn" onclick="filterCategory('backend', this)">
+          Java & Backend
+        </button>
+        <button class="filter-btn" onclick="filterCategory('fullstack', this)">
+          MERN & Web Dev
+        </button>
+        <button class="filter-btn" onclick="filterCategory('scripting', this)">
+          Python & AI
+        </button>
+        <button class="filter-btn" onclick="filterCategory('core', this)">
+          Core CS & Data
+        </button>
+      </div>
+
+      <!-- Notes Grid -->
+      <div class="row g-4" id="notesGrid">
+        <!-- Card 1: Java -->
+        <div
+          class="col-md-6 col-lg-4 note-item"
+          data-category="backend"
+          data-title="java programming oop"
+        >
+          <div class="note-card">
+            <div class="card-thumbnail-box">
+              <img
+                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop"
+                alt="Java Programming"
+              />
+              <span class="badge-subject"
+                ><i class="bi bi-file-earmark-code me-1"></i> Backend</span
+              >
+            </div>
+            <div class="card-body p-4 d-flex flex-column">
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
+              >
+                <span class="text-warning small"
+                  ><i class="bi bi-star-fill"></i> 4.9 (1.2k reads)</span
+                >
+                <span class="badge bg-light text-dark border">14 Chapters</span>
+              </div>
+              <h5 class="fw-bold text-dark">Java & OOPs Mastery</h5>
+              <p class="text-muted small flex-grow-1">
+                Complete coverage of Object-Oriented Principles, JVM internals,
+                Collections Framework, Multithreading, and Exception Handling.
+              </p>
+              <div class="pt-3 border-top d-flex gap-2">
+                <!-- Link placeholders: Replace href values below with your URL links -->
+                <a
+                  href="java.html"
+                  target="_blank"
+                  class="btn btn-outline-emerald w-100 btn-sm"
+                >
+                  <i class="bi bi-eye me-1"></i> Read Online
+                </a>
+                <a
+                  href="YOUR_JAVA_PDF_DOWNLOAD_LINK_HERE"
+                  download
+                  class="btn btn-emerald btn-sm px-3"
+                >
+                  <i class="bi bi-arrow-down-tray"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: MERN Stack -->
+        <div
+          class="col-md-6 col-lg-4 note-item"
+          data-category="fullstack"
+          data-title="mern stack react node mongodb"
+        >
+          <div class="note-card">
+            <div class="card-thumbnail-box">
+              <img
+                src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=600&auto=format&fit=crop"
+                alt="MERN Stack"
+              />
+              <span class="badge-subject"
+                ><i class="bi bi-layers me-1"></i> Full Stack</span
+              >
+            </div>
+            <div class="card-body p-4 d-flex flex-column">
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
+              >
+                <span class="text-warning small"
+                  ><i class="bi bi-star-fill"></i> 4.95 (2.4k reads)</span
+                >
+                <span class="badge bg-light text-dark border">22 Chapters</span>
+              </div>
+              <h5 class="fw-bold text-dark">MERN Full Stack Engine</h5>
+              <p class="text-muted small flex-grow-1">
+                From basic React hooks and state management to Node/Express
+                micro-services, JWT authentication, and MongoDB indexing.
+              </p>
+              <div class="pt-3 border-top d-flex gap-2">
+                <!-- Link placeholders: Replace href values below with your URL links -->
+                <a
+                  href="MARNFullStack.html"
+                  target="_blank"
+                  class="btn btn-outline-emerald w-100 btn-sm"
+                >
+                  <i class="bi bi-eye me-1"></i> Read Online
+                </a>
+                <a
+                  href="YOUR_MERN_PDF_DOWNLOAD_LINK_HERE"
+                  download
+                  class="btn btn-emerald btn-sm px-3"
+                >
+                  <i class="bi bi-arrow-down-tray"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Python -->
+        <div
+          class="col-md-6 col-lg-4 note-item"
+          data-category="scripting"
+          data-title="python scripting pandas automation"
+        >
+          <div class="note-card">
+            <div class="card-thumbnail-box">
+              <img
+                src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600&auto=format&fit=crop"
+                alt="Python Notes"
+              />
+              <span class="badge-subject"
+                ><i class="bi bi-terminal me-1"></i> Automation</span
+              >
+            </div>
+            <div class="card-body p-4 d-flex flex-column">
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
+              >
+                <span class="text-warning small"
+                  ><i class="bi bi-star-fill"></i> 4.88 (980 reads)</span
+                >
+                <span class="badge bg-light text-dark border">18 Chapters</span>
+              </div>
+              <h5 class="fw-bold text-dark">Python & Data Science</h5>
+              <p class="text-muted small flex-grow-1">
+                Syntax foundations, list comprehensions, lambda expressions,
+                file I/O, along with introduction to Pandas, NumPy, and APIs.
+              </p>
+              <div class="pt-3 border-top d-flex gap-2">
+                <!-- Link placeholders: Replace href values below with your URL links -->
+                <a
+                  href="python.html"
+                  target="_blank"
+                  class="btn btn-outline-emerald w-100 btn-sm"
+                >
+                  <i class="bi bi-eye me-1"></i> Read Online
+                </a>
+                <a
+                  href="YOUR_PYTHON_PDF_DOWNLOAD_LINK_HERE"
+                  download
+                  class="btn btn-emerald btn-sm px-3"
+                >
+                  <i class="bi bi-arrow-down-tray"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: C++ & DSA -->
+        <div
+          class="col-md-6 col-lg-4 note-item"
+          data-category="core"
+          data-title="c++ dsa data structures algorithms"
+        >
+          <div class="note-card">
+            <div class="card-thumbnail-box">
+              <img
+                src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=600&auto=format&fit=crop"
+                alt="C++ and DSA"
+              />
+              <span class="badge-subject"
+                ><i class="bi bi-diagram-2 me-1"></i> Core CS</span
+              >
+            </div>
+            <div class="card-body p-4 d-flex flex-column">
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
+              >
+                <span class="text-warning small"
+                  ><i class="bi bi-star-fill"></i> 4.92 (3.1k reads)</span
+                >
+                <span class="badge bg-light text-dark border">26 Chapters</span>
+              </div>
+              <h5 class="fw-bold text-dark">C++ & Data Structures</h5>
+              <p class="text-muted small flex-grow-1">
+                Pointers, Dynamic memory allocation, STL templates, Linked
+                Lists, Trees, Graphs, and asymptotic Time Complexity analysis.
+              </p>
+              <div class="pt-3 border-top d-flex gap-2">
+                <!-- Link placeholders: Replace href values below with your URL links -->
+                <a
+                  href="C++.html"
+                  target="_blank"
+                  class="btn btn-outline-emerald w-100 btn-sm"
+                >
+                  <i class="bi bi-eye me-1"></i> Read Online
+                </a>
+                <a
+                  href="YOUR_DSA_PDF_DOWNLOAD_LINK_HERE"
+                  download
+                  class="btn btn-emerald btn-sm px-3"
+                >
+                  <i class="bi bi-arrow-down-tray"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: Data Mining -->
+        <div
+          class="col-md-6 col-lg-4 note-item"
+          data-category="core"
+          data-title="data mining warehousing sql database"
+        >
+          <div class="note-card">
+            <div class="card-thumbnail-box">
+              <img
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop"
+                alt="Data Mining"
+              />
+              <span class="badge-subject"
+                ><i class="bi bi-server me-1"></i> Big Data</span
+              >
+            </div>
+            <div class="card-body p-4 d-flex flex-column">
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
+              >
+                <span class="text-warning small"
+                  ><i class="bi bi-star-fill"></i> 4.75 (640 reads)</span
+                >
+                <span class="badge bg-light text-dark border">10 Chapters</span>
+              </div>
+              <h5 class="fw-bold text-dark">Data Mining & Warehousing</h5>
+              <p class="text-muted small flex-grow-1">
+                ETL pipelines, OLAP vs OLTP cubes, Apriori algorithm, decision
+                trees, K-means clustering, and association rule mining.
+              </p>
+              <div class="pt-3 border-top d-flex gap-2">
+                <!-- Link placeholders: Replace href values below with your URL links -->
+                <a
+                  href="dataMining.html"
+                  target="_blank"
+                  class="btn btn-outline-emerald w-100 btn-sm"
+                >
+                  <i class="bi bi-eye me-1"></i> Read Online
+                </a>
+                <a
+                  href="YOUR_DATAMINING_PDF_DOWNLOAD_LINK_HERE"
+                  download
+                  class="btn btn-emerald btn-sm px-3"
+                >
+                  <i class="bi bi-arrow-down-tray"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6: Asynchronous JS -->
+        <div
+          class="col-md-6 col-lg-4 note-item"
+          data-category="fullstack"
+          data-title="javascript es6 fetch axios async await"
+        >
+          <div class="note-card">
+            <div class="card-thumbnail-box">
+              <img
+                src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&auto=format&fit=crop"
+                alt="JavaScript Async"
+              />
+              <span class="badge-subject"
+                ><i class="bi bi-lightning-charge me-1"></i> Modern JS</span
+              >
+            </div>
+            <div class="card-body p-4 d-flex flex-column">
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
+              >
+                <span class="text-warning small"
+                  ><i class="bi bi-star-fill"></i> 4.98 (4.2k reads)</span
+                >
+                <span class="badge bg-light text-dark border">16 Chapters</span>
+              </div>
+              <h5 class="fw-bold text-dark">Async JavaScript & APIs</h5>
+              <p class="text-muted small flex-grow-1">
+                Demystifying Event Loop, Promises, Async/Await, Error Handling,
+                Fetch vs Axios comparison, and RESTful client integrations.
+              </p>
+              <div class="pt-3 border-top d-flex gap-2">
+                <!-- Link placeholders: Replace href values below with your URL links -->
+                <a
+                  href="javaScript.html"
+                  target="_blank"
+                  class="btn btn-outline-emerald w-100 btn-sm"
+                >
+                  <i class="bi bi-eye me-1"></i> Read Online
+                </a>
+                <a
+                  href="YOUR_JS_PDF_DOWNLOAD_LINK_HERE"
+                  download
+                  class="btn btn-emerald btn-sm px-3"
+                >
+                  <i class="bi bi-arrow-down-tray"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= WHY EDUGLOW SECTION ================= -->
+    <section class="py-5 bg-white border-top border-bottom" id="whyEduGlow">
+      <div class="container py-4">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-5">
+            <span
+              class="badge bg-success bg-opacity-10 text-success fw-bold px-3 py-2 rounded-pill mb-3"
+              >Why Us?</span
+            >
+            <h2 class="display-6 fw-bold">
+              Built for Students Who Value Speed & Quality.
+            </h2>
+            <p class="text-muted my-3">
+              No 400-page bloated textbooks. Get straight-to-the-point revision
+              blueprints with interview questions, code snippets, and diagram
+              summaries.
+            </p>
+            <ul class="list-unstyled d-flex flex-column gap-3 mt-4">
+              <li class="d-flex align-items-start gap-3">
+                <div
+                  class="bg-success bg-opacity-10 text-success rounded-circle p-2 mt-1"
+                >
+                  <i class="bi bi-check-lg fs-5"></i>
+                </div>
+                <div>
+                  <h6 class="fw-bold mb-1">Hand-curated code examples</h6>
+                  <p class="text-muted small mb-0">
+                    Every snippet is tested, linted, and ready to run in VS Code
+                    or web sandbox.
+                  </p>
+                </div>
+              </li>
+              <li class="d-flex align-items-start gap-3">
+                <div
+                  class="bg-success bg-opacity-10 text-success rounded-circle p-2 mt-1"
+                >
+                  <i class="bi bi-check-lg fs-5"></i>
+                </div>
+                <div>
+                  <h6 class="fw-bold mb-1">University Syllabus Aligned</h6>
+                  <p class="text-muted small mb-0">
+                    Specifically structured to match university exam units and
+                    technical job interviews.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-lg-7">
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <div class="p-4 rounded-4 bg-light border h-100">
+                  <i
+                    class="bi bi-journal-code fs-1 text-success mb-3 d-block"
+                  ></i>
+                  <h5 class="fw-bold">Step-by-Step Code</h5>
+                  <p class="text-muted small mb-0">
+                    Visual explanations alongside code blocks so concepts stick
+                    permanently.
+                  </p>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="p-4 rounded-4 bg-light border h-100">
+                  <i
+                    class="bi bi-shield-check fs-1 text-success mb-3 d-block"
+                  ></i>
+                  <h5 class="fw-bold">Zero Paywalls</h5>
+                  <p class="text-muted small mb-0">
+                    Free access to all student notes, cheatsheets, and reference
+                    slides.
+                  </p>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="p-4 rounded-4 bg-light border h-100">
+                  <i
+                    class="bi bi-phone-flip fs-1 text-success mb-3 d-block"
+                  ></i>
+                  <h5 class="fw-bold">Mobile Responsive</h5>
+                  <p class="text-muted small mb-0">
+                    Smooth readability on phones, tablets, or desktop screens.
+                  </p>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="p-4 rounded-4 bg-light border h-100">
+                  <i
+                    class="bi bi-cloud-arrow-down-fill fs-1 text-success mb-3 d-block"
+                  ></i>
+                  <h5 class="fw-bold">Fast Download</h5>
+                  <p class="text-muted small mb-0">
+                    Single-click PDF and Markdown downloads for offline
+                    revision.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT US SECTION ================= -->
+    <section class="container py-5 my-5" id="contactSection">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="contact-box p-4 p-md-5 rounded-4 bg-light border">
+            <div class="text-center mb-4">
+              <span
+                class="badge bg-success bg-opacity-10 text-success fw-bold px-3 py-2 rounded-pill"
+                >Get In Touch</span
+              >
+              <h2 class="fw-bold mt-2">Request Notes or Ask Questions</h2>
+              <p class="text-muted">
+                Need notes on a specific topic or want to contribute? Send us a
+                message!
+              </p>
+            </div>
+
+            <form id="contactForm">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label
+                    for="userName"
+                    class="form-label fw-semibold small text-muted"
+                    >Your Name</label
+                  >
+                  <div class="input-group">
+                    <span class="input-group-text bg-white border-end-0"
+                      ><i class="bi bi-person text-muted"></i
+                    ></span>
+                    <!-- Updated Name Placeholder to ALOK RAJPOOT -->
+                    <input
+                      type="text"
+                      class="form-control bg-white border-start-0 ps-0"
+                      id="userName"
+                      placeholder="e.g. ALOK RAJPOOT"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label
+                    for="userEmail"
+                    class="form-label fw-semibold small text-muted"
+                    >Email Address</label
+                  >
+                  <div class="input-group">
+                    <span class="input-group-text bg-white border-end-0"
+                      ><i class="bi bi-envelope text-muted"></i
+                    ></span>
+                    <input
+                      type="email"
+                      class="form-control bg-white border-start-0 ps-0"
+                      id="userEmail"
+                      placeholder="name@domain.com"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label
+                    for="subjectTopic"
+                    class="form-label fw-semibold small text-muted"
+                    >Topic of Interest</label
+                  >
+                  <select class="form-select bg-white" id="subjectTopic">
+                    <option selected>General Query</option>
+                    <option>Request Java / OOP Notes</option>
+                    <option>Request MERN Stack Tutorials</option>
+                    <option>Request Python & AI Resources</option>
+                    <option>Report an Error or Typo</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label
+                    for="userMessage"
+                    class="form-label fw-semibold small text-muted"
+                    >Message</label
+                  >
+                  <textarea
+                    class="form-control bg-white"
+                    id="userMessage"
+                    rows="4"
+                    placeholder="Let us know what notes or tutorials you need..."
+                    required
+                  ></textarea>
+                </div>
+                <div class="col-12 mt-4">
+                  <button
+                    type="submit"
+                    class="btn btn-emerald w-100 py-3 fw-bold fs-6"
+                  >
+                    <i class="bi bi-send-fill me-2"></i> Submit Request
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TOAST NOTIFICATION ================= -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1055">
+      <div
+        id="notificationToast"
+        class="toast align-items-center text-white bg-dark border-0 shadow-lg"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="d-flex">
+          <div class="toast-body d-flex align-items-center gap-2">
+            <i class="bi bi-check-circle-fill text-success fs-5"></i>
+            <span id="toastMessage">Action completed!</span>
+          </div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer-eduglow py-5">
+      <div class="container">
+        <div class="row g-4 justify-content-between">
+          <div class="col-lg-4">
+            <div
+              class="navbar-brand-glow fw-bold mb-3"
+              style="font-size: 1.5rem"
+            >
+              <i class="bi bi-mortarboard-fill text-success"></i> EduGlow
+            </div>
+            <p class="small text-white-50">
+              An open repository dedicated to simplifying technical education
+              for engineering students and self-taught developers.
+            </p>
+            <div class="d-flex gap-3 fs-5 mt-3">
+              <a href="#" class="text-white-50 hover-light"
+                ><i class="bi bi-github"></i
+              ></a>
+              <a href="#" class="text-white-50 hover-light"
+                ><i class="bi bi-linkedin"></i
+              ></a>
+              <a href="#" class="text-white-50 hover-light"
+                ><i class="bi bi-twitter-x"></i
+              ></a>
+              <a href="#" class="text-white-50 hover-light"
+                ><i class="bi bi-youtube"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="col-6 col-lg-2">
+            <h6 class="text-white fw-bold mb-3">Resources</h6>
+            <ul
+              class="list-unstyled small d-flex flex-column gap-2 text-white-50"
+            >
+              <li>
+                <a href="#notesSection" class="text-decoration-none text-reset"
+                  >Java Guides</a
+                >
+              </li>
+              <li>
+                <a href="#notesSection" class="text-decoration-none text-reset"
+                  >MERN Full Stack</a
+                >
+              </li>
+              <li>
+                <a href="#notesSection" class="text-decoration-none text-reset"
+                  >Python Scripts</a
+                >
+              </li>
+              <li>
+                <a href="#notesSection" class="text-decoration-none text-reset"
+                  >Data Structures</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-6 col-lg-2">
+            <h6 class="text-white fw-bold mb-3">Community</h6>
+            <ul
+              class="list-unstyled small d-flex flex-column gap-2 text-white-50"
+            >
+              <li>
+                <a href="#" class="text-decoration-none text-reset"
+                  >Study Groups</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-decoration-none text-reset"
+                  >Contribute Notes</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-decoration-none text-reset"
+                  >Code Challenges</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-decoration-none text-reset">Roadmaps</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3">
+            <h6 class="text-white fw-bold mb-3">Stay Updated</h6>
+            <p class="small text-white-50">
+              Get weekly curated revision cheat sheets directly to your inbox.
+            </p>
+            <div class="input-group mb-3">
+              <input
+                type="email"
+                class="form-control form-control-sm"
+                placeholder="Your email"
+              />
+              <button
+                class="btn btn-emerald btn-sm"
+                type="button"
+                onclick="showDownloadToast('Newsletter Subscription')"
+              >
+                Join
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="border-top border-secondary border-opacity-25 mt-5 pt-4 text-center small text-white-50"
+        >
+          <p class="mb-0">
+            &copy; 2026 EduGlow. Engineered & Maintained with by
+            <strong>Alok Rajpoot ❤️</strong>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom Client-Side Interactions -->
+    <script>
+      // Category Filter Function
+      function filterCategory(category, buttonElement) {
+        document
+          .querySelectorAll(".filter-btn")
+          .forEach((btn) => btn.classList.remove("active"));
+        buttonElement.classList.add("active");
+
+        const items = document.querySelectorAll(".note-item");
+        items.forEach((item) => {
+          const itemCategory = item.getAttribute("data-category");
+          if (category === "all" || itemCategory === category) {
+            item.style.display = "block";
+          } else {
+            item.style.display = "none";
+          }
+        });
+      }
+
+      // Live Real-Time Search Filter
+      function searchNotes() {
+        const query = document
+          .getElementById("searchInput")
+          .value.toLowerCase()
+          .trim();
+        const items = document.querySelectorAll(".note-item");
+
+        items.forEach((item) => {
+          const titleText = (
+            item.getAttribute("data-title") || ""
+          ).toLowerCase();
+          if (!query || titleText.includes(query)) {
+            item.style.display = "block";
+          } else {
+            item.style.display = "none";
+          }
+        });
+      }
+
+      // Real-time Filtering as you Type (Crucial for Modern UX)
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", searchNotes);
+
+      // Toast Feedback System
+      function triggerToast(message) {
+        const toastEl = document.getElementById("notificationToast");
+        document.getElementById("toastMessage").innerText = message;
+
+        // Bootstrap Toast Initialization
+        const toast = new bootstrap.Toast(toastEl, { delay: 3000 });
+        toast.show();
+      }
+
+      function showDownloadToast(title) {
+        triggerToast(`Opening "${title}" study material...`);
+      }
+
+      // Contact Form Handler
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const name = document.getElementById("userName").value;
+          triggerToast(`Thanks, ${name}! Your request has been recorded.`);
+          this.reset();
+        });
+    </script>
+  </body>
+</html>

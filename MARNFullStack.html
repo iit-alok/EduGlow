@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MERN Full Stack Engine - EduGlow | by Alok Rajpoot</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans & Fira Code -->
+    <link rel="icon" type="image/png" href="2.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --emerald-primary: #10b981;
+        --emerald-hover: #059669;
+        --dark-bg: #0f172a;
+        --dark-card: #1e293b;
+        --code-bg: #1e1e2e;
+      }
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #f8fafc;
+        color: #334155;
+        scroll-behavior: smooth;
+      }
+
+      /* Navbar */
+      .navbar-eduglow {
+        background-color: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .brand-badge {
+        font-size: 0.65rem;
+        background-color: var(--emerald-primary);
+        color: #fff;
+        padding: 2px 6px;
+        border-radius: 4px;
+        margin-left: 5px;
+        vertical-align: middle;
+      }
+
+      /* Header Hero */
+      .notes-hero {
+        background: linear-gradient(135deg, #0f172a 0%, #064e3b 100%);
+        color: white;
+        padding: 65px 0 45px 0;
+        border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+      }
+
+      /* Sticky Sidebar TOC */
+      .sidebar-toc {
+        position: sticky;
+        top: 90px;
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+      }
+
+      .sidebar-toc a {
+        color: #64748b;
+        text-decoration: none;
+        font-size: 0.83rem;
+        display: block;
+        padding: 5px 10px;
+        border-radius: 6px;
+        transition: all 0.2s;
+      }
+
+      .sidebar-toc a:hover {
+        color: var(--emerald-hover);
+        background-color: #ecfdf5;
+        font-weight: 600;
+      }
+
+      /* Cards */
+      .topic-card {
+        background: white;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+      }
+
+      .topic-badge {
+        background-color: #d1fae5;
+        color: #065f46;
+        font-weight: 700;
+        font-size: 0.72rem;
+        padding: 4px 10px;
+        border-radius: 20px;
+        text-transform: uppercase;
+      }
+
+      .topic-img {
+        border-radius: 12px;
+        max-height: 260px;
+        width: 100%;
+        object-fit: cover;
+        border: 1px solid #e2e8f0;
+      }
+
+      /* Code Blocks */
+      pre {
+        background-color: var(--code-bg);
+        color: #a6accd;
+        font-family: "Fira Code", monospace;
+        padding: 16px;
+        border-radius: 10px;
+        font-size: 0.83rem;
+        overflow-x: auto;
+        border: 1px solid #334155;
+      }
+
+      code {
+        font-family: "Fira Code", monospace;
+      }
+
+      .code-keyword {
+        color: #f07178;
+        font-weight: 600;
+      }
+      .code-class {
+        color: #ffcb6b;
+        font-weight: 600;
+      }
+      .code-method {
+        color: #82aaff;
+      }
+      .code-string {
+        color: #c3e88d;
+      }
+      .code-comment {
+        color: #676e95;
+        font-style: italic;
+      }
+
+      .btn-emerald {
+        background-color: var(--emerald-primary);
+        color: white;
+        font-weight: 600;
+      }
+
+      .btn-emerald:hover {
+        background-color: var(--emerald-hover);
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-eduglow sticky-top">
+      <div class="container">
+        <a
+          class="navbar-brand navbar-brand-glow fw-bold d-flex flex-column align-items-start lh-sm"
+          href="index.html"
+        >
+          <div>
+            <i class="bi bi-mortarboard-fill text-success"></i>
+            EduGlow
+            <span class="brand-badge">PRO v2</span>
+          </div>
+          <span
+            class="text-white-50 fw-normal"
+            style="
+              font-size: 0.65rem;
+              letter-spacing: 1px;
+              padding-left: 1.6rem;
+              margin-top: -2px;
+            "
+          >
+            by ALOK RAJPOOT
+          </span>
+        </a>
+
+        <div class="ms-auto d-flex gap-2">
+          <a href="index.html" class="btn btn-outline-light btn-sm px-3">
+            <i class="bi bi-arrow-left me-1"></i> Home
+          </a>
+          <a href="java.html" class="btn btn-outline-light btn-sm px-3">
+            <i class="bi bi-code-square me-1"></i> Java Notes
+          </a>
+          <button class="btn btn-emerald btn-sm px-3" onclick="window.print()">
+            <i class="bi bi-printer me-1"></i> Print / PDF
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ================= HEADER HERO ================= -->
+    <header class="notes-hero">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-8">
+            <span
+              class="badge bg-success bg-opacity-25 text-white mb-2 px-3 py-1 rounded-pill"
+            >
+              <i class="bi bi-layers-half me-1"></i> Full Stack Engineering
+              Track
+            </span>
+            <h1 class="display-5 fw-bold text-white mb-2">
+              MERN Full Stack Engine
+            </h1>
+            <p class="lead text-white-50 fs-6">
+              Authored and curated by <strong>Alok Rajpoot</strong>. Master
+              end-to-end JavaScript development with MongoDB, Express.js, React,
+              Node.js, JWT security, and production deployment architectures.
+            </p>
+          </div>
+          <div class="col-lg-4 text-lg-end d-none d-lg-block">
+            <img
+              src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=500&auto=format&fit=crop"
+              alt="MERN Stack Architecture"
+              class="img-fluid rounded-4 shadow border border-secondary border-opacity-25"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <div class="container my-5">
+      <div class="row g-4">
+        <!-- Sticky Sidebar -->
+        <div class="col-lg-3 d-none d-lg-block">
+          <div class="sidebar-toc">
+            <h6 class="fw-bold mb-3 text-dark">
+              <i class="bi bi-compass text-success me-2"></i>MERN Index
+            </h6>
+            <nav class="nav flex-column gap-1">
+              <small
+                class="text-uppercase fw-bold text-muted mt-2"
+                style="font-size: 0.7rem"
+                >Architecture</small
+              >
+              <a href="#m1">1. MERN Architecture & Request Flow</a>
+
+              <small
+                class="text-uppercase fw-bold text-muted mt-3"
+                style="font-size: 0.7rem"
+                >Backend Engine</small
+              >
+              <a href="#m2">2. Node.js Runtime & Event Loop</a>
+              <a href="#m3">3. Express.js REST APIs & Middleware</a>
+              <a href="#m4">4. MongoDB & Mongoose Modeling</a>
+
+              <small
+                class="text-uppercase fw-bold text-muted mt-3"
+                style="font-size: 0.7rem"
+                >Frontend Layer</small
+              >
+              <a href="#m5">5. React.js Component Architecture</a>
+              <a href="#m6">6. Core React Hooks Deep Dive</a>
+              <a href="#m7">7. Axios Client & State Flow</a>
+
+              <small
+                class="text-uppercase fw-bold text-muted mt-3"
+                style="font-size: 0.7rem"
+                >Security & Production</small
+              >
+              <a href="#m8">8. JWT Authentication & Protected Routes</a>
+              <a href="#m9">9. Production Deployment & CORS</a>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Content Column -->
+        <div class="col-lg-9">
+          <!-- MODULE 1: MERN ARCHITECTURE -->
+          <article class="topic-card" id="m1">
+            <span class="topic-badge mb-2 d-inline-block">Module 01</span>
+            <h2 class="fw-bold text-dark mb-3">
+              1. MERN Architecture & Complete Request Lifecycle
+            </h2>
+            <p>
+              The <strong>MERN Stack</strong> utilizes JavaScript across the
+              entire technology stack (Frontend, Backend, and Database),
+              creating a unified mental model for development.
+            </p>
+
+            <div class="my-3">
+              <img
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"
+                alt="Full Stack Flow"
+                class="topic-img mb-2"
+              />
+              <small class="text-muted d-block text-center"
+                >Figure 1.1: Single-thread Event-driven backend handling React
+                Virtual DOM events.</small
+              >
+            </div>
+
+            <div class="table-responsive my-3">
+              <table class="table table-bordered align-middle">
+                <thead class="table-light">
+                  <tr>
+                    <th>Layer</th>
+                    <th>Technology</th>
+                    <th>Core Role</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="fw-bold text-success">M - Database</td>
+                    <td>MongoDB</td>
+                    <td>
+                      Document-oriented NoSQL database storing JSON-like BSON
+                      records.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold text-primary">E - Web Framework</td>
+                    <td>Express.js</td>
+                    <td>
+                      Minimalist routing framework for handling HTTP requests
+                      and middlewares.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold text-info">R - Frontend</td>
+                    <td>React.js</td>
+                    <td>
+                      Declarative, component-driven UI engine with Virtual DOM
+                      reconciliation.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold text-warning">N - Runtime</td>
+                    <td>Node.js</td>
+                    <td>
+                      V8-powered asynchronous runtime executing server-side
+                      JavaScript.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <!-- MODULE 2: NODE.JS RUNTIME -->
+          <article class="topic-card" id="m2">
+            <span class="topic-badge mb-2 d-inline-block">Module 02</span>
+            <h2 class="fw-bold text-dark mb-3">
+              2. Node.js Runtime & Non-Blocking Event Loop
+            </h2>
+            <p>
+              Node.js runs on Google Chrome's
+              <strong>V8 JavaScript Engine</strong> and uses a single-threaded
+              event loop with <strong>libuv</strong> to handle thousands of
+              concurrent operations without thread blocking.
+            </p>
+
+            <h5 class="fw-bold mt-3">
+              Understanding the Phases of the Event Loop:
+            </h5>
+            <ol>
+              <li>
+                <strong>Timers Phase:</strong> Executes callbacks scheduled by
+                <code>setTimeout()</code> and <code>setInterval()</code>.
+              </li>
+              <li>
+                <strong>I/O Callbacks:</strong> Executes deferred callbacks
+                (network errors, system operations).
+              </li>
+              <li>
+                <strong>Poll Phase:</strong> Retrieves new I/O events; blocks
+                here when waiting for incoming socket connections.
+              </li>
+              <li>
+                <strong>Check Phase:</strong> Executes
+                <code>setImmediate()</code> callbacks right after the poll phase
+                finishes.
+              </li>
+              <li>
+                <strong>Close Callbacks:</strong> Cleanups (e.g.
+                <code>socket.on('close', ...)</code>).
+              </li>
+            </ol>
+          </article>
+
+          <!-- MODULE 3: EXPRESS.JS REST APIS -->
+          <article class="topic-card" id="m3">
+            <span class="topic-badge mb-2 d-inline-block">Module 03</span>
+            <h2 class="fw-bold text-dark mb-3">
+              3. Express.js REST APIs & Middleware Chain
+            </h2>
+            <p>
+              Express operates as a pipeline of
+              <strong>Middleware functions</strong> that intercept incoming
+              request (<code>req</code>) and response (<code>res</code>) objects
+              before reaching controllers.
+            </p>
+
+            <pre><code><span class="code-comment">// server.js - Production-ready Express Boilerplate</span>
+<span class="code-keyword">import</span> express <span class="code-keyword">from</span> <span class="code-string">'express'</span>;
+<span class="code-keyword">import</span> cors <span class="code-keyword">from</span> <span class="code-string">'cors'</span>;
+
+<span class="code-keyword">const</span> app = express();
+
+<span class="code-comment">// Essential Global Middleware</span>
+app.use(cors());
+app.use(express.json()); <span class="code-comment">// Parses application/json body</span>
+
+<span class="code-comment">// Sample REST Route</span>
+app.get(<span class="code-string">'/api/health'</span>, (req, res) => {
+    res.status(<span class="code-string">200</span>).json({ status: <span class="code-string">'Active'</span>, author: <span class="code-string">'Alok Rajpoot'</span> });
+});
+
+<span class="code-comment">// Central Error Handler Middleware</span>
+app.use((err, req, res, next) => {
+    <span class="code-keyword">const</span> statusCode = err.statusCode || <span class="code-string">500</span>;
+    res.status(statusCode).json({ error: err.message || <span class="code-string">'Internal Server Error'</span> });
+});
+
+app.listen(<span class="code-string">5000</span>, () => console.log(<span class="code-string">'API Server running on port 5000'</span>));</code></pre>
+          </article>
+
+          <!-- MODULE 4: MONGODB & MONGOOSE -->
+          <article class="topic-card" id="m4">
+            <span class="topic-badge mb-2 d-inline-block">Module 04</span>
+            <h2 class="fw-bold text-dark mb-3">
+              4. MongoDB & Mongoose Schema Modeling
+            </h2>
+            <p>
+              <strong>Mongoose</strong> acts as an Object Data Modeling (ODM)
+              layer providing strictly-typed schemas, validations, and hooks on
+              top of unstructured MongoDB documents.
+            </p>
+
+            <pre><code><span class="code-comment">// models/Note.js - Schema Definition with Validation</span>
+<span class="code-keyword">import</span> mongoose <span class="code-keyword">from</span> <span class="code-string">'mongoose'</span>;
+
+<span class="code-keyword">const</span> noteSchema = <span class="code-keyword">new</span> mongoose.Schema({
+    title: { 
+        type: String, 
+        required: [<span class="code-keyword">true</span>, <span class="code-string">'Title is mandatory'</span>], 
+        trim: <span class="code-keyword">true</span> 
+    },
+    category: { 
+        type: String, 
+        enum: [<span class="code-string">'backend'</span>, <span class="code-string">'fullstack'</span>, <span class="code-string">'scripting'</span>, <span class="code-string">'core'</span>],
+        default: <span class="code-string">'fullstack'</span>
+    },
+    author: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: <span class="code-string">'User'</span>,
+        required: <span class="code-keyword">true</span>
+    }
+}, { timestamps: <span class="code-keyword">true</span> });
+
+<span class="code-comment">// Compound Index for lightning-fast queries</span>
+noteSchema.index({ category: <span class="code-string">1</span>, createdAt: -<span class="code-string">1</span> });
+
+<span class="code-keyword">export default</span> mongoose.model(<span class="code-string">'Note'</span>, noteSchema);</code></pre>
+          </article>
+
+          <!-- MODULE 5 & 6: REACT & HOOKS -->
+          <article class="topic-card" id="m5">
+            <span class="topic-badge mb-2 d-inline-block">Module 05 & 06</span>
+            <h2 class="fw-bold text-dark mb-3">
+              5. Modern React Architecture & Core Hooks
+            </h2>
+            <p>
+              React builds dynamic interfaces using composable components. Data
+              flows <strong>downwards via props</strong>, and events flow
+              <strong>upwards via callbacks</strong>.
+            </p>
+
+            <div class="row g-3 my-3">
+              <div class="col-md-6">
+                <div class="p-3 bg-light rounded-3 border">
+                  <h6 class="fw-bold text-primary">
+                    <code>useState</code> & <code>useEffect</code>
+                  </h6>
+                  <p class="small text-muted mb-0">
+                    <code>useState</code> holds reactive component state;
+                    <code>useEffect</code> synchronizes side-effects (API calls,
+                    subscriptions, DOM mutations).
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 bg-light rounded-3 border">
+                  <h6 class="fw-bold text-success">
+                    <code>useContext</code> & <code>useReducer</code>
+                  </h6>
+                  <p class="small text-muted mb-0">
+                    Replaces prop-drilling by providing an application-wide
+                    state pipeline for authenticated user data and themes.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <h5 class="fw-bold mt-4">Real Component Implementation:</h5>
+            <pre><code><span class="code-comment">// components/NotesList.jsx</span>
+<span class="code-keyword">import</span> React, { useState, useEffect } <span class="code-keyword">from</span> <span class="code-string">'react'</span>;
+<span class="code-keyword">import</span> axios <span class="code-keyword">from</span> <span class="code-string">'axios'</span>;
+
+<span class="code-keyword">export default function</span> <span class="code-class">NotesList</span>() {
+    <span class="code-keyword">const</span> [notes, setNotes] = useState([]);
+    <span class="code-keyword">const</span> [loading, setLoading] = useState(<span class="code-keyword">true</span>);
+
+    useEffect(() => {
+        <span class="code-keyword">const</span> fetchNotes = <span class="code-keyword">async</span> () => {
+            <span class="code-keyword">try</span> {
+                <span class="code-keyword">const</span> { data } = <span class="code-keyword">await</span> axios.get(<span class="code-string">'/api/notes'</span>);
+                setNotes(data);
+            } <span class="code-keyword">catch</span> (err) {
+                console.error(<span class="code-string">'Failed to fetch:'</span>, err);
+            } <span class="code-keyword">finally</span> {
+                setLoading(<span class="code-keyword">false</span>);
+            }
+        };
+        fetchNotes();
+    }, []); <span class="code-comment">// Empty dependency array runs once on mount</span>
+
+    <span class="code-keyword">if</span> (loading) <span class="code-keyword">return</span> &lt;p&gt;Loading EduGlow Notes...&lt;/p&gt;;
+
+    <span class="code-keyword">return</span> (
+        &lt;div className="notes-container"&gt;
+            {notes.map(n => &lt;h5 key={n._id}&gt;{n.title}&lt;/h5&gt;)}
+        &lt;/div&gt;
+    );
+}</code></pre>
+          </article>
+
+          <!-- MODULE 8: JWT AUTHENTICATION -->
+          <article class="topic-card" id="m8">
+            <span class="topic-badge mb-2 d-inline-block">Module 07</span>
+            <h2 class="fw-bold text-dark mb-3">
+              6. End-to-End JWT Authentication Pipeline
+            </h2>
+            <p>
+              JSON Web Tokens (JWT) enable stateless user authorization. The
+              server issues a cryptographically signed token containing claims
+              upon user login.
+            </p>
+
+            <div class="my-3">
+              <img
+                src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800&auto=format&fit=crop"
+                alt="Security & Tokens"
+                class="topic-img mb-2"
+              />
+            </div>
+
+            <pre><code><span class="code-comment">// middleware/authMiddleware.js - Express JWT Verification</span>
+<span class="code-keyword">import</span> jwt <span class="code-keyword">from</span> <span class="code-string">'jsonwebtoken'</span>;
+
+<span class="code-keyword">export const</span> <span class="code-method">protect</span> = (req, res, next) => {
+    <span class="code-keyword">const</span> authHeader = req.headers.authorization;
+
+    <span class="code-keyword">if</span> (authHeader && authHeader.startsWith(<span class="code-string">'Bearer '</span>)) {
+        <span class="code-keyword">try</span> {
+            <span class="code-keyword">const</span> token = authHeader.split(<span class="code-string">' '</span>)[<span class="code-string">1</span>];
+            <span class="code-keyword">const</span> decoded = jwt.verify(token, process.env.JWT_SECRET);
+            req.user = decoded; <span class="code-comment">// Attach payload to request object</span>
+            <span class="code-keyword">return</span> next();
+        } <span class="code-keyword">catch</span> (error) {
+            <span class="code-keyword">return</span> res.status(<span class="code-string">401</span>).json({ message: <span class="code-string">'Token expired or invalid'</span> });
+        }
+    }
+    res.status(<span class="code-string">401</span>).json({ message: <span class="code-string">'Not authorized, no token provided'</span> });
+};</code></pre>
+          </article>
+
+          <!-- MODULE 9: PRODUCTION & DEPLOYMENT -->
+          <article class="topic-card" id="m9">
+            <span class="topic-badge mb-2 d-inline-block">Module 08</span>
+            <h2 class="fw-bold text-dark mb-3">
+              7. Production Deployment & Interview Best Practices
+            </h2>
+
+            <h5 class="fw-bold">Deployment Checklist:</h5>
+            <ul class="mb-4">
+              <li>
+                <strong>Environment Variables:</strong> Store secrets, Database
+                URIs, and JWT keys in <code>.env</code> files; never commit them
+                to Git.
+              </li>
+              <li>
+                <strong>CORS Configuration:</strong> Whitelist only your
+                production frontend domain (e.g.
+                <code>origin: 'https://eduglow.in'</code>).
+              </li>
+              <li>
+                <strong>Hosting Strategy:</strong> Deploy MongoDB on MongoDB
+                Atlas, Express API on Render/Railway/AWS EC2, and React on
+                Vercel/Netlify.
+              </li>
+            </ul>
+
+            <div class="p-3 bg-light rounded-3 border">
+              <h6 class="fw-bold text-success mb-1">
+                Key Interview Question: How does React's Virtual DOM work?
+              </h6>
+              <p class="small text-muted mb-0">
+                React maintains an in-memory representation of the real DOM.
+                When state changes, a new Virtual DOM tree is created and
+                compared against the previous one using the
+                <strong>Reconciliation (Diffing) Algorithm</strong>. Only the
+                changed nodes are updated in the actual browser DOM, reducing
+                expensive paint operations.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer
+      class="bg-dark text-white py-4 mt-5 border-top border-secondary border-opacity-25"
+    >
+      <div class="container text-center small text-white-50">
+        <p class="mb-1">
+          &copy; 2025 EduGlow. Curated & Engineered with ❤️ by
+          <strong>Alok Rajpoot</strong>.
+        </p>
+        <p class="mb-0">
+          Full-Stack MERN Reference Engine &bull; University & Placement Aligned
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Async JavaScript & APIs Mastery - EduGlow | by Alok Rajpoot</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="icon" type="image/png" href="2.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --violet-core: #8b5cf6;
+        --cyan-glow: #06b6d4;
+        --electric-blue: #3b82f6;
+        --void-dark: #070a13;
+        --void-card: #0f1424;
+        --void-border: rgba(139, 92, 246, 0.25);
+        --code-bg: #0a0d18;
+        --text-secondary: #94a3b8;
+      }
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: var(--void-dark);
+        color: #e2e8f0;
+        scroll-behavior: smooth;
+      }
+
+      /* Navbar */
+      .navbar-void {
+        background-color: rgba(7, 10, 19, 0.94);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--void-border);
+      }
+
+      .brand-badge-violet {
+        font-size: 0.65rem;
+        background: linear-gradient(
+          135deg,
+          var(--violet-core),
+          var(--cyan-glow)
+        );
+        color: #070a13;
+        font-weight: 800;
+        padding: 2px 7px;
+        border-radius: 4px;
+        margin-left: 6px;
+      }
+
+      .nav-chip {
+        color: #cbd5e1;
+        font-size: 0.8rem;
+        padding: 5px 12px;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .nav-chip:hover {
+        color: var(--cyan-glow);
+        border-color: var(--violet-core);
+        background: rgba(139, 92, 246, 0.12);
+      }
+
+      .nav-chip.active-chip {
+        color: #ffffff;
+        background: linear-gradient(
+          135deg,
+          var(--violet-core),
+          var(--electric-blue)
+        );
+        border-color: var(--violet-core);
+        font-weight: 700;
+      }
+
+      /* Header Hero */
+      .void-hero {
+        background:
+          radial-gradient(
+            circle at 85% 20%,
+            rgba(139, 92, 246, 0.16) 0%,
+            transparent 50%
+          ),
+          linear-gradient(180deg, #070a13 0%, #0f1424 100%);
+        border-bottom: 1px solid var(--void-border);
+        padding: 70px 0 50px 0;
+      }
+
+      .gradient-text-violet {
+        background: linear-gradient(90deg, #a78bfa 0%, #06b6d4 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Sticky Sidebar TOC */
+      .sidebar-toc {
+        position: sticky;
+        top: 90px;
+        background: var(--void-card);
+        border-radius: 14px;
+        padding: 22px;
+        border: 1px solid var(--void-border);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+      }
+
+      .sidebar-toc a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.82rem;
+        display: block;
+        padding: 6px 10px;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+      }
+
+      .sidebar-toc a:hover,
+      .sidebar-toc a.active {
+        color: #ffffff;
+        background: rgba(139, 92, 246, 0.15);
+        border-left: 2px solid var(--cyan-glow);
+        padding-left: 12px;
+      }
+
+      /* Content Cards */
+      .topic-card {
+        background: var(--void-card);
+        border-radius: 16px;
+        border: 1px solid var(--void-border);
+        padding: 32px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+      }
+
+      .topic-badge {
+        background: rgba(139, 92, 246, 0.14);
+        color: var(--cyan-glow);
+        font-weight: 700;
+        font-size: 0.72rem;
+        padding: 4px 12px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border: 1px solid rgba(6, 182, 212, 0.35);
+      }
+
+      .topic-img {
+        border-radius: 12px;
+        max-height: 270px;
+        width: 100%;
+        object-fit: cover;
+        border: 1px solid var(--void-border);
+      }
+
+      /* Code Blocks */
+      pre {
+        background-color: var(--code-bg);
+        color: #e2e8f0;
+        font-family: "JetBrains Mono", monospace;
+        padding: 18px;
+        border-radius: 10px;
+        font-size: 0.83rem;
+        overflow-x: auto;
+        border: 1px solid rgba(139, 92, 246, 0.3);
+        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
+      }
+
+      code {
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .code-keyword {
+        color: #f43f5e;
+        font-weight: 600;
+      }
+      .code-class {
+        color: #38bdf8;
+        font-weight: 600;
+      }
+      .code-method {
+        color: #a78bfa;
+      }
+      .code-string {
+        color: #34d399;
+      }
+      .code-comment {
+        color: #64748b;
+        font-style: italic;
+      }
+      .code-num {
+        color: #fbbf24;
+      }
+
+      /* Buttons */
+      .btn-violet {
+        background: linear-gradient(
+          135deg,
+          var(--violet-core),
+          var(--electric-blue)
+        );
+        color: #ffffff;
+        font-weight: 700;
+        border: none;
+      }
+
+      .btn-violet:hover {
+        box-shadow: 0 0 16px rgba(139, 92, 246, 0.5);
+        color: #ffffff;
+      }
+
+      /* Tables */
+      .table-void {
+        color: #cbd5e1;
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .table-void th {
+        background: rgba(139, 92, 246, 0.14);
+        color: var(--cyan-glow);
+        border-bottom: 1px solid var(--void-border);
+      }
+
+      .table-void td {
+        background: transparent;
+        border-color: rgba(255, 255, 255, 0.06);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ================= NAVBAR: INTER-SUBJECT CONNECTIVITY ================= -->
+    <nav class="navbar navbar-expand-xl navbar-dark navbar-void sticky-top">
+      <div class="container">
+        <a
+          class="navbar-brand fw-bold d-flex flex-column align-items-start lh-sm"
+          href="index.html"
+        >
+          <div>
+            <i class="bi bi-lightning-charge-fill text-info me-1"></i>
+            <span class="text-white">EduGlow</span>
+            <span class="brand-badge-violet">ASYNC JS</span>
+          </div>
+          <span
+            class="text-white-50 fw-normal"
+            style="
+              font-size: 0.65rem;
+              letter-spacing: 1px;
+              padding-left: 1.6rem;
+              margin-top: -2px;
+            "
+          >
+            by ALOK RAJPOOT
+          </span>
+        </a>
+
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navHub"
+        >
+          <i class="bi bi-list text-info fs-3"></i>
+        </button>
+
+        <!-- Complete Inter-Subject Navigation Menu -->
+        <div class="collapse navbar-collapse justify-content-end" id="navHub">
+          <div class="d-flex flex-wrap gap-2 my-2 my-xl-0 align-items-center">
+            <a href="index.html" class="nav-chip">
+              <i class="bi bi-house-door me-1"></i> Home
+            </a>
+            <a href="java.html" class="nav-chip">
+              <i class="bi bi-filetype-java me-1"></i> Java
+            </a>
+            <a href="mern.html" class="nav-chip">
+              <i class="bi bi-layers me-1"></i> MERN
+            </a>
+            <a href="python.html" class="nav-chip">
+              <i class="bi bi-filetype-py me-1"></i> Python
+            </a>
+            <a href="cpp-dsa.html" class="nav-chip">
+              <i class="bi bi-cpu me-1"></i> C++ & DSA
+            </a>
+            <a href="datamining.html" class="nav-chip">
+              <i class="bi bi-server me-1"></i> Data Mining
+            </a>
+            <span class="nav-chip active-chip">
+              <i class="bi bi-lightning-charge me-1"></i> Async JS
+            </span>
+            <button
+              class="btn btn-violet btn-sm px-3 ms-xl-2"
+              onclick="window.print()"
+            >
+              <i class="bi bi-printer me-1"></i> Print / PDF
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ================= HEADER HERO ================= -->
+    <header class="void-hero">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-8">
+            <span class="topic-badge mb-3 d-inline-block">
+              <i class="bi bi-cpu-fill me-1"></i> Runtime Engine Architecture
+            </span>
+            <h1 class="display-5 fw-bold text-white mb-2">
+              Async JavaScript &amp;
+              <span class="gradient-text-violet">Web APIs Engine</span>
+            </h1>
+            <p class="lead text-secondary fs-6 pe-lg-4">
+              Curated by <strong>Alok Rajpoot</strong>. Master the JavaScript
+              Event Loop, Call Stack execution, Microtasks vs. Macrotasks,
+              Promises, Async/Await concurrency patterns, Fetch API, and Axios
+              client integrations [source: 6, 10].
+            </p>
+          </div>
+          <div class="col-lg-4 text-lg-end d-none d-lg-block">
+            <img
+              src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=500&auto=format&fit=crop"
+              alt="Modern JavaScript"
+              class="img-fluid rounded-4 shadow border border-info border-opacity-25"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= MAIN LAYOUT ================= -->
+    <div class="container my-5">
+      <div class="row g-4">
+        <!-- Sticky Sidebar Table of Contents -->
+        <div class="col-lg-3 d-none d-lg-block">
+          <div class="sidebar-toc">
+            <h6 class="fw-bold mb-3 text-white">
+              <i class="bi bi-compass text-info me-2"></i>Curriculum Map
+            </h6>
+            <nav class="nav flex-column gap-1">
+              <small
+                class="text-uppercase fw-bold text-info mt-2"
+                style="font-size: 0.68rem; letter-spacing: 1px"
+                >Runtime Architecture</small
+              >
+              <a href="#a1">1. Single-Threaded Runtime &amp; Blocking</a>
+              <a href="#a2">2. The Event Loop, Web APIs &amp; Queues</a>
+
+              <small
+                class="text-uppercase fw-bold text-info mt-3"
+                style="font-size: 0.68rem; letter-spacing: 1px"
+                >Async Patterns</small
+              >
+              <a href="#a3">3. Callbacks &amp; Callback Hell</a>
+              <a href="#a4">4. ES6 Promises: Architecture &amp; Lifecycle</a>
+              <a href="#a5">5. Modern Async / Await Syntactic Sugar</a>
+
+              <small
+                class="text-uppercase fw-bold text-info mt-3"
+                style="font-size: 0.68rem; letter-spacing: 1px"
+                >Network Layer &amp; Concurrency</small
+              >
+              <a href="#a6">6. Fetch API vs. Axios Client</a>
+              <a href="#a7">7. Promise Concurrency Combinators</a>
+              <a href="#a8">8. Placement Interview Q&amp;A</a>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Content Column -->
+        <div class="col-lg-9">
+          <!-- MODULE 1: SINGLE-THREADED RUNTIME -->
+          <article class="topic-card" id="a1">
+            <span class="topic-badge mb-2 d-inline-block">Module 01</span>
+            <h2 class="fw-bold text-white mb-3">
+              1. Single-Threaded Runtime &amp; The Non-Blocking Dilemma
+            </h2>
+            <p class="text-secondary">
+              JavaScript is a <strong>single-threaded</strong> language [source:
+              7, 10]. It possesses a single <strong>Call Stack</strong>, meaning
+              it can only execute <strong>one instruction at a time</strong> in
+              a synchronous, top-to-bottom sequence [source: 5, 10].
+            </p>
+
+            <div
+              class="p-3 bg-dark rounded-3 border border-secondary border-opacity-25 my-3"
+            >
+              <h6 class="fw-bold text-danger mb-1">
+                <i class="bi bi-exclamation-triangle-fill me-1"></i> The Danger
+                of Blocking the Main Thread
+              </h6>
+              <p class="small text-secondary mb-0">
+                If network HTTP requests, image rendering, or file parsing were
+                executed synchronously, the browser execution thread would
+                freeze completely, locking UI scrolling, button clicks, and tab
+                interactions [source: 3, 9]. Asynchronous programming allows
+                long operations to run in the background while the UI remains
+                responsive [source: 1, 3].
+              </p>
+            </div>
+          </article>
+
+          <!-- MODULE 2: EVENT LOOP DEEP DIVE -->
+          <article class="topic-card" id="a2">
+            <span class="topic-badge mb-2 d-inline-block">Module 02</span>
+            <h2 class="fw-bold text-white mb-3">
+              2. The Event Loop, Web APIs &amp; Task Queues
+            </h2>
+            <p class="text-secondary">
+              How does JavaScript perform asynchronous tasks with only one
+              thread? The browser provides <strong>Web APIs</strong> (C++
+              background worker threads for timers, network sockets, DOM events)
+              that manage operations outside the JavaScript execution thread
+              [source: 9, 10].
+            </p>
+
+            <div class="table-responsive my-3">
+              <table class="table table-void align-middle">
+                <thead>
+                  <tr>
+                    <th>Component</th>
+                    <th>Queue Priority</th>
+                    <th>What Operates Here</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="fw-bold text-info">Call Stack</td>
+                    <td>Immediate</td>
+                    <td>
+                      Synchronous code frames (Last-In, First-Out) [source: 10]
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold text-warning">Microtask Queue</td>
+                    <td>High Priority</td>
+                    <td>
+                      <code>Promise.then()</code>, <code>catch()</code>,
+                      <code>queueMicrotask()</code> [source: 10]
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold text-secondary">Macrotask Queue</td>
+                    <td>Standard Priority</td>
+                    <td>
+                      <code>setTimeout</code>, <code>setInterval</code>,
+                      <code>I/O callbacks</code>,
+                      <code>setImmediate</code> [source: 10]
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h6 class="fw-bold text-white mt-4">
+              Execution Sequence in Action:
+            </h6>
+            <pre><code><span class="code-comment">// Output Prediction Example for Placements [source: 10]</span>
+console.<span class="code-method">log</span>(<span class="code-string">"1: Synchronous Script Start"</span>);
+
+<span class="code-method">setTimeout</span>(() => {
+    console.<span class="code-method">log</span>(<span class="code-string">"2: Macrotask (Timer Callback)"</span>);
+}, <span class="code-num">0</span>);
+
+Promise.<span class="code-method">resolve</span>().<span class="code-method">then</span>(() => {
+    console.<span class="code-method">log</span>(<span class="code-string">"3: Microtask (Promise Callback)"</span>);
+});
+
+console.<span class="code-method">log</span>(<span class="code-string">"4: Synchronous Script End"</span>);
+
+<span class="code-comment">/* Output Order:
+   1: Synchronous Script Start
+   4: Synchronous Script End
+   3: Microtask (Promise Callback)  <-- Empties microtasks before macrotasks! [source: 10]
+   2: Macrotask (Timer Callback)
+*/</span></code></pre>
+          </article>
+
+          <!-- MODULE 3: CALLBACKS -->
+          <article class="topic-card" id="a3">
+            <span class="topic-badge mb-2 d-inline-block">Module 03</span>
+            <h2 class="fw-bold text-white mb-3">
+              3. Callbacks &amp; Callback Hell (The Pyramid of Doom)
+            </h2>
+            <p class="text-secondary">
+              A <strong>Callback</strong> is a function passed as an argument to
+              another function, scheduled to execute once an asynchronous task
+              completes [source: 7]. Chaining multiple sequential requests leads
+              to deeply nested indentation known as "Callback Hell" [source: 7,
+              8]:
+            </p>
+
+            <pre><code><span class="code-comment">// Callback Hell: Fragile error propagation & poor maintainability [source: 7, 8]</span>
+<span class="code-method">getUserData</span>(userId, (user) => {
+    <span class="code-method">getUserOrders</span>(user.id, (orders) => {
+        <span class="code-method">getOrderInvoice</span>(orders[<span class="code-num">0</span>].id, (invoice) => {
+            <span class="code-method">generatePDF</span>(invoice, (pdf) => {
+                console.<span class="code-method">log</span>(<span class="code-string">"PDF rendered successfully"</span>);
+            });
+        });
+    });
+});</code></pre>
+          </article>
+
+          <!-- MODULE 4: PROMISES -->
+          <article class="topic-card" id="a4">
+            <span class="topic-badge mb-2 d-inline-block">Module 04</span>
+            <h2 class="fw-bold text-white mb-3">
+              4. ES6 Promises: Architecture &amp; Lifecycle
+            </h2>
+            <p class="text-secondary">
+              A <strong>Promise</strong> is an object representing the eventual
+              completion (or failure) of an asynchronous operation [source: 7,
+              8]. It exists in one of three distinct, immutable states [source:
+              7, 8]:
+            </p>
+
+            <div class="row g-3 my-3">
+              <div class="col-md-4">
+                <div
+                  class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 text-center"
+                >
+                  <h6 class="fw-bold text-warning">1. Pending</h6>
+                  <p class="small text-secondary mb-0">
+                    Initial state; operation still running [source: 7, 8].
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div
+                  class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 text-center"
+                >
+                  <h6 class="fw-bold text-success">2. Fulfilled</h6>
+                  <p class="small text-secondary mb-0">
+                    Operation resolved successfully [source: 7, 8].
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div
+                  class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 text-center"
+                >
+                  <h6 class="fw-bold text-danger">3. Rejected</h6>
+                  <p class="small text-secondary mb-0">
+                    Operation encountered an error [source: 7, 8].
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <pre><code><span class="code-comment">// Creating a custom Promise [source: 5, 8]</span>
+<span class="code-keyword">const</span> fetchStudentScores = (studentId) => {
+    <span class="code-keyword">return new</span> <span class="code-class">Promise</span>((resolve, reject) => {
+        <span class="code-method">setTimeout</span>(() => {
+            <span class="code-keyword">if</span> (studentId) {
+                <span class="code-method">resolve</span>({ id: studentId, author: <span class="code-string">"Alok Rajpoot"</span>, score: <span class="code-num">98</span> });
+            } <span class="code-keyword">else</span> {
+                <span class="code-method">reject</span>(<span class="code-keyword">new</span> <span class="code-class">Error</span>(<span class="code-string">"Invalid Student Identifier provided"</span>));
+            }
+        }, <span class="code-num">1000</span>);
+    });
+};
+
+<span class="code-comment">// Chaining with .then(), .catch(), and .finally() [source: 4, 7]</span>
+fetchStudentScores(<span class="code-num">101</span>)
+    .<span class="code-method">then</span>(data => console.<span class="code-method">log</span>(<span class="code-string">"Fetched:"</span>, data))
+    .<span class="code-method">catch</span>(err => console.<span class="code-method">error</span>(<span class="code-string">"Error caught:"</span>, err.message))
+    .<span class="code-method">finally</span>(() => console.<span class="code-method">log</span>(<span class="code-string">"Operation complete"</span>));</code></pre>
+          </article>
+
+          <!-- MODULE 5: ASYNC/AWAIT -->
+          <article class="topic-card" id="a5">
+            <span class="topic-badge mb-2 d-inline-block">Module 05</span>
+            <h2 class="fw-bold text-white mb-3">
+              5. Modern Async / Await Syntactic Sugar
+            </h2>
+            <p class="text-secondary">
+              Introduced in ECMAScript 2017 (ES8), <code>async</code> /
+              <code>await</code> is syntactic sugar built on top of Promises
+              [source: 7, 8]. It enables developers to structure asynchronous
+              logic in a clean, sequential, synchronous-looking format without
+              nested callbacks [source: 4, 8].
+            </p>
+
+            <pre><code><span class="code-comment">// Elegant asynchronous flow with structured error handling [source: 4, 7]</span>
+<span class="code-keyword">async function</span> <span class="code-method">loadEduGlowNotes</span>() {
+    <span class="code-keyword">try</span> {
+        <span class="code-keyword">const</span> response = <span class="code-keyword">await</span> fetch(<span class="code-string">"/api/notes"</span>); <span class="code-comment">// Pauses function execution until resolved [source: 4, 5]</span>
+        <span class="code-keyword">if</span> (!response.ok) {
+            <span class="code-keyword">throw new</span> <span class="code-class">Error</span>(<span class="code-string">`HTTP Failure status: ${response.status}`</span>);
+        }
+        <span class="code-keyword">const</span> notes = <span class="code-keyword">await</span> response.<span class="code-method">json</span>();
+        console.<span class="code-method">log</span>(<span class="code-string">"Notes retrieved:"</span>, notes);
+        <span class="code-keyword">return</span> notes;
+    } <span class="code-keyword">catch</span> (error) {
+        console.<span class="code-method">error</span>(<span class="code-string">"Diagnostic Trace:"</span>, error.message);
+    }
+}</code></pre>
+          </article>
+
+          <!-- MODULE 6: FETCH VS AXIOS -->
+          <article class="topic-card" id="a6">
+            <span class="topic-badge mb-2 d-inline-block">Module 06</span>
+            <h2 class="fw-bold text-white mb-3">
+              6. Native Fetch API vs. Axios HTTP Client
+            </h2>
+            <p class="text-secondary">
+              Web applications make HTTP requests using either browser-native
+              <code>fetch()</code> or third-party libraries like
+              <code>Axios</code> [source: 1, 6].
+            </p>
+
+            <div class="table-responsive my-3">
+              <table class="table table-void align-middle">
+                <thead>
+                  <tr>
+                    <th>Criteria</th>
+                    <th>Native Fetch API</th>
+                    <th>Axios HTTP Client</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="fw-bold text-info">Installation</td>
+                    <td>Built directly into modern browsers [source: 5]</td>
+                    <td>Requires package install (`npm i axios`)</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold text-warning">JSON Parsing</td>
+                    <td>
+                      Requires two steps: `await res.json()` [source: 4, 6]
+                    </td>
+                    <td>Automatic JSON data transformation [source: 6]</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold text-danger">HTTP Error Codes</td>
+                    <td>
+                      Resolves 404/500 as fulfilled (checks `res.ok`) [source:
+                      6]
+                    </td>
+                    <td>
+                      Rejects automatically on 4xx / 5xx codes [source: 6]
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold text-success">Request Interceptors</td>
+                    <td>Manual implementation needed</td>
+                    <td>Built-in token and request interceptors</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <!-- MODULE 7: PROMISE COMBINATORS -->
+          <article class="topic-card" id="a7">
+            <span class="topic-badge mb-2 d-inline-block">Module 07</span>
+            <h2 class="fw-bold text-white mb-3">
+              7. Parallel Execution &amp; Promise Combinators
+            </h2>
+            <p class="text-secondary">
+              Never execute independent HTTP requests sequentially using
+              consecutive <code>await</code> lines. Use
+              <strong>Promise Combinators</strong> to execute operations in
+              parallel [source: 8, 10]:
+            </p>
+
+            <div class="row g-3 my-3">
+              <div class="col-md-6">
+                <div
+                  class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 h-100"
+                >
+                  <h6 class="fw-bold text-info">
+                    <code>Promise.all([p1, p2])</code>
+                  </h6>
+                  <p class="small text-secondary mb-0">
+                    Runs in parallel. Resolves only when
+                    <strong>all</strong> promises succeed; rejects immediately
+                    if any single promise fails [source: 8, 10].
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div
+                  class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 h-100"
+                >
+                  <h6 class="fw-bold text-success">
+                    <code>Promise.allSettled([p1, p2])</code>
+                  </h6>
+                  <p class="small text-secondary mb-0">
+                    Runs in parallel and never short-circuits. Returns the
+                    resolution or rejection status for each request once all are
+                    settled.
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div
+                  class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 h-100"
+                >
+                  <h6 class="fw-bold text-warning">
+                    <code>Promise.race([p1, p2])</code>
+                  </h6>
+                  <p class="small text-secondary mb-0">
+                    Settles as soon as the <strong>fastest</strong> promise
+                    finishes (whether it resolves or rejects).
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div
+                  class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 h-100"
+                >
+                  <h6 class="fw-bold text-violet text-primary">
+                    <code>Promise.any([p1, p2])</code>
+                  </h6>
+                  <p class="small text-secondary mb-0">
+                    Resolves as soon as the
+                    <strong>first successful</strong> promise finishes. Ignores
+                    rejections unless all promises fail.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- MODULE 8: INTERVIEW QUESTIONS -->
+          <article class="topic-card" id="a8">
+            <span class="topic-badge mb-2 d-inline-block">Module 08</span>
+            <h2 class="fw-bold text-white mb-3">
+              8. Top Technical Placement Interview Questions
+            </h2>
+
+            <div class="accordion" id="asyncAccordion">
+              <div class="accordion-item bg-dark border-secondary">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button bg-dark text-info"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#aq1"
+                  >
+                    Why is setTimeout(fn, 0) not executed immediately?
+                  </button>
+                </h2>
+                <div id="aq1" class="accordion-collapse collapse show">
+                  <div class="accordion-body text-secondary small">
+                    <code>setTimeout(fn, 0)</code> registers a macrotask in the
+                    Host Web API environment [source: 10]. Even with zero delay,
+                    its callback is placed into the
+                    <strong>Macrotask Queue</strong> [source: 10]. The Event
+                    Loop cannot run this callback until the synchronous
+                    <strong>Call Stack is completely empty</strong> and all
+                    pending <strong>Microtasks</strong> have been processed
+                    [source: 10].
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item bg-dark border-secondary mt-2">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button bg-dark text-info collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#aq2"
+                  >
+                    What is the difference between Microtask and Macrotask
+                    Queues?
+                  </button>
+                </h2>
+                <div id="aq2" class="accordion-collapse collapse">
+                  <div class="accordion-body text-secondary small">
+                    <strong>Microtasks</strong> (e.g.,
+                    <code>Promise.then()</code>, <code>catch()</code>,
+                    <code>queueMicrotask()</code>) have higher execution
+                    priority than <strong>Macrotasks</strong> (e.g.,
+                    <code>setTimeout</code>, <code>setInterval</code>) [source:
+                    10]. The Event Loop processes the entire microtask queue
+                    right after the Call Stack empties, before processing the
+                    next macrotask or updating browser rendering frames [source:
+                    10].
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="py-4 border-top border-secondary border-opacity-25 mt-5">
+      <div class="container text-center small text-secondary">
+        <p class="mb-1 text-white-50">
+          &copy; 2025 EduGlow. Engineered &amp; Curated with &#9889; by
+          <strong>Alok Rajpoot</strong>.
+        </p>
+        <p class="mb-0">
+          Async JavaScript &amp; Web APIs Engine &bull; University Exam &amp;
+          Full-Stack Placement Track
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

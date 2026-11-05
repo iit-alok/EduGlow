@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>C++ & Data Structures Mastery - EduGlow | by Alok Rajpoot</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="icon" type="image/png" href="2.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --crimson-primary: #ff3366;
+        --violet-accent: #a855f7;
+        --dark-engine: #090a10;
+        --card-engine: #111422;
+        --border-engine: rgba(255, 51, 102, 0.2);
+        --code-bg: #0c0e18;
+        --text-secondary: #94a3b8;
+      }
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: var(--dark-engine);
+        color: #cbd5e1;
+        scroll-behavior: smooth;
+      }
+
+      /* Navbar */
+      .navbar-engine {
+        background-color: rgba(9, 10, 16, 0.94);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border-engine);
+      }
+
+      .brand-badge-crimson {
+        font-size: 0.65rem;
+        background: linear-gradient(
+          135deg,
+          var(--crimson-primary),
+          var(--violet-accent)
+        );
+        color: #fff;
+        font-weight: 700;
+        padding: 2px 7px;
+        border-radius: 4px;
+        margin-left: 6px;
+      }
+
+      /* Header Hero */
+      .engine-hero {
+        background:
+          radial-gradient(
+            circle at 85% 15%,
+            rgba(255, 51, 102, 0.15) 0%,
+            transparent 45%
+          ),
+          linear-gradient(180deg, #090a10 0%, #111422 100%);
+        border-bottom: 1px solid var(--border-engine);
+        padding: 70px 0 50px 0;
+      }
+
+      .gradient-text-crimson {
+        background: linear-gradient(90deg, #ff3366 0%, #c084fc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Sticky Sidebar TOC */
+      .sidebar-toc {
+        position: sticky;
+        top: 90px;
+        background: var(--card-engine);
+        border-radius: 14px;
+        padding: 20px;
+        border: 1px solid var(--border-engine);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+      }
+
+      .sidebar-toc a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.82rem;
+        display: block;
+        padding: 6px 10px;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+      }
+
+      .sidebar-toc a:hover {
+        color: #ffffff;
+        background: rgba(255, 51, 102, 0.12);
+        border-left: 2px solid var(--crimson-primary);
+        padding-left: 12px;
+      }
+
+      /* Content Cards */
+      .topic-card {
+        background: var(--card-engine);
+        border-radius: 16px;
+        border: 1px solid var(--border-engine);
+        padding: 32px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .topic-badge {
+        background: rgba(255, 51, 102, 0.12);
+        color: var(--crimson-primary);
+        font-weight: 700;
+        font-size: 0.72rem;
+        padding: 4px 12px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border: 1px solid rgba(255, 51, 102, 0.3);
+      }
+
+      .topic-img {
+        border-radius: 12px;
+        max-height: 270px;
+        width: 100%;
+        object-fit: cover;
+        border: 1px solid var(--border-engine);
+      }
+
+      /* Code Block */
+      pre {
+        background-color: var(--code-bg);
+        color: #f8fafc;
+        font-family: "JetBrains Mono", monospace;
+        padding: 18px;
+        border-radius: 10px;
+        font-size: 0.83rem;
+        overflow-x: auto;
+        border: 1px solid rgba(255, 51, 102, 0.25);
+        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
+      }
+
+      code {
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .code-keyword {
+        color: #f43f5e;
+        font-weight: 600;
+      }
+      .code-type {
+        color: #c084fc;
+        font-weight: 600;
+      }
+      .code-func {
+        color: #38bdf8;
+      }
+      .code-string {
+        color: #4ade80;
+      }
+      .code-comment {
+        color: #64748b;
+        font-style: italic;
+      }
+      .code-num {
+        color: #fbbf24;
+      }
+
+      /* Buttons */
+      .btn-crimson {
+        background: linear-gradient(135deg, var(--crimson-primary), #e11d48);
+        color: #ffffff;
+        font-weight: 700;
+        border: none;
+      }
+
+      .btn-crimson:hover {
+        box-shadow: 0 0 16px rgba(255, 51, 102, 0.5);
+        color: #ffffff;
+      }
+
+      /* Table */
+      .table-engine {
+        color: #cbd5e1;
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .table-engine th {
+        background: rgba(255, 51, 102, 0.1);
+        color: var(--crimson-primary);
+        border-bottom: 1px solid var(--border-engine);
+      }
+
+      .table-engine td {
+        background: transparent;
+        border-color: rgba(255, 255, 255, 0.05);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-engine sticky-top">
+      <div class="container">
+        <a
+          class="navbar-brand fw-bold d-flex flex-column align-items-start lh-sm"
+          href="index.html"
+        >
+          <div>
+            <i class="bi bi-cpu-fill text-danger me-1"></i>
+            <span class="text-white">EduGlow</span>
+            <span class="brand-badge-crimson">C++ DSA</span>
+          </div>
+          <span
+            class="text-white-50 fw-normal"
+            style="
+              font-size: 0.65rem;
+              letter-spacing: 1px;
+              padding-left: 1.6rem;
+              margin-top: -2px;
+            "
+          >
+            by ALOK RAJPOOT
+          </span>
+        </a>
+
+        <!-- Top Navigation Links -->
+        <div class="ms-auto d-flex gap-2">
+          <a href="index.html" class="btn btn-outline-light btn-sm px-3">
+            <i class="bi bi-arrow-left me-1"></i> Home
+          </a>
+          <a href="java.html" class="btn btn-outline-light btn-sm px-3">
+            <i class="bi bi-journal-code me-1"></i> Java
+          </a>
+          <a href="mern.html" class="btn btn-outline-light btn-sm px-3">
+            <i class="bi bi-layers me-1"></i> MERN
+          </a>
+          <!-- Added Python Notes Route -->
+          <a href="python.html" class="btn btn-outline-light btn-sm px-3">
+            <i class="bi bi-terminal me-1"></i> Python
+          </a>
+          <button class="btn btn-crimson btn-sm px-3" onclick="window.print()">
+            <i class="bi bi-printer me-1"></i> Print / PDF
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ================= HEADER HERO ================= -->
+    <header class="engine-hero">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-8">
+            <span class="topic-badge mb-3 d-inline-block">
+              <i class="bi bi-lightning-charge-fill me-1"></i> High Performance
+              Computing
+            </span>
+            <h1 class="display-5 fw-bold text-white mb-2">
+              C++ & Data Structures
+              <span class="gradient-text-crimson">Algorithmic Engine</span>
+            </h1>
+            <p class="lead text-secondary fs-6 pe-lg-4">
+              Curated by <strong>Alok Rajpoot</strong>. Pointers, Dynamic
+              Memory, C++ STL, Trees, Heaps, Graphs, and Asymptotic Complexity
+              analysis for competitive programming and tech interviews.
+            </p>
+          </div>
+          <div class="col-lg-4 text-lg-end d-none d-lg-block">
+            <img
+              src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=500&auto=format&fit=crop"
+              alt="C++ Algorithms"
+              class="img-fluid rounded-4 shadow border border-danger border-opacity-25"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= MAIN LAYOUT ================= -->
+    <div class="container my-5">
+      <div class="row g-4">
+        <!-- Sticky Sidebar (Table of Contents) -->
+        <div class="col-lg-3 d-none d-lg-block">
+          <div class="sidebar-toc">
+            <h6 class="fw-bold mb-3 text-white">
+              <i class="bi bi-diagram-2 text-danger me-2"></i>DSA Roadmap
+            </h6>
+            <nav class="nav flex-column gap-1">
+              <small
+                class="text-uppercase fw-bold text-danger mt-2"
+                style="font-size: 0.68rem; letter-spacing: 1px"
+                >Foundations</small
+              >
+              <a href="#c1">1. Pointers, References & Memory</a>
+              <a href="#c2">2. Asymptotic Complexity (Big-O)</a>
+              <a href="#c3">3. Standard Template Library (STL)</a>
+
+              <small
+                class="text-uppercase fw-bold text-danger mt-3"
+                style="font-size: 0.68rem; letter-spacing: 1px"
+                >Linear Data Structures</small
+              >
+              <a href="#c4">4. Linked Lists (Singly & Doubly)</a>
+              <a href="#c5">5. Stacks & Queues</a>
+
+              <small
+                class="text-uppercase fw-bold text-danger mt-3"
+                style="font-size: 0.68rem; letter-spacing: 1px"
+                >Non-Linear & Advanced</small
+              >
+              <a href="#c6">6. Binary Search Trees & Heaps</a>
+              <a href="#c7">7. Graph Algorithms (BFS/DFS)</a>
+              <a href="#c8">8. Dynamic Programming & Recursion</a>
+              <a href="#c9">9. Interview Cheatsheet</a>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="col-lg-9">
+          <!-- MODULE 1: POINTERS & MEMORY -->
+          <article class="topic-card" id="c1">
+            <span class="topic-badge mb-2 d-inline-block">Module 01</span>
+            <h2 class="fw-bold text-white mb-3">
+              1. Pointers, References & Dynamic Memory Allocation
+            </h2>
+            <p class="text-secondary">
+              C++ provides manual memory control. Variables allocated on the
+              <strong>Stack</strong> are cleared automatically upon scope exit,
+              while memory on the <strong>Heap</strong> allocated via
+              <code>new</code> must be explicitly reclaimed using
+              <code>delete</code> to prevent memory leaks [source: 3, 4].
+            </p>
+
+            <div class="table-responsive my-3">
+              <table class="table table-engine align-middle">
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Pointer (<code>int* ptr</code>)</th>
+                    <th>Reference (<code>int& ref</code>)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="fw-bold text-danger">Reassignment</td>
+                    <td>
+                      Can point to different memory addresses [source: 4, 5].
+                    </td>
+                    <td>
+                      Bound permanently to its initialized variable [source: 4,
+                      5].
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold text-warning">Nullability</td>
+                    <td>Can be <code>nullptr</code> [source: 4].</td>
+                    <td>Must bind to a valid object upon declaration.</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold text-info">Memory Allocation</td>
+                    <td>
+                      Heap allocation via <code>new int[N]</code> [source: 3,
+                      4].
+                    </td>
+                    <td>Alias of an existing variable; no separate storage.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <pre><code><span class="code-comment">// Dynamic memory allocation and safe cleanup in C++</span>
+<span class="code-type">int</span>* arr = <span class="code-keyword">new</span> <span class="code-type">int</span>[<span class="code-num">5</span>]; <span class="code-comment">// Allocated in Heap memory [source: 3, 4]</span>
+
+<span class="code-keyword">for</span> (<span class="code-type">int</span> i = <span class="code-num">0</span>; i &lt; <span class="code-num">5</span>; i++) {
+    arr[i] = (i + <span class="code-num">1</span>) * <span class="code-num">10</span>;
+}
+
+<span class="code-keyword">delete</span>[] arr;  <span class="code-comment">// Essential: Reclaiming memory to prevent leaks [source: 3, 4]</span>
+arr = <span class="code-keyword">nullptr</span>; <span class="code-comment">// Avoid dangling pointer</span></code></pre>
+          </article>
+
+          <!-- MODULE 2: BIG-O COMPLEXITY -->
+          <article class="topic-card" id="c2">
+            <span class="topic-badge mb-2 d-inline-block">Module 02</span>
+            <h2 class="fw-bold text-white mb-3">
+              2. Asymptotic Complexity Analysis
+            </h2>
+            <p class="text-secondary">
+              Algorithm efficiency evaluates the growth rate of runtime ($T(n)$)
+              and memory footprint ($S(n)$) as input size $n \to \infty$
+              [source: 3, 4].
+            </p>
+
+            <div class="row g-3 my-3">
+              <div class="col-md-4">
+                <div
+                  class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 text-center"
+                >
+                  <h6 class="fw-bold text-danger">Big-O ($\mathcal{O}$)</h6>
+                  <p class="small text-secondary mb-0">
+                    Upper bound / Worst-case scenario [source: 3, 4].
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div
+                  class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 text-center"
+                >
+                  <h6 class="fw-bold text-warning">Omega ($\Omega$)</h6>
+                  <p class="small text-secondary mb-0">
+                    Lower bound / Best-case scenario [source: 3, 4].
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div
+                  class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 text-center"
+                >
+                  <h6 class="fw-bold text-success">Theta ($\Theta$)</h6>
+                  <p class="small text-secondary mb-0">
+                    Tight bound / Average behavior [source: 3, 4].
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- MODULE 3: STL -->
+          <article class="topic-card" id="c3">
+            <span class="topic-badge mb-2 d-inline-block">Module 03</span>
+            <h2 class="fw-bold text-white mb-3">
+              3. C++ Standard Template Library (STL)
+            </h2>
+            <p class="text-secondary">
+              The STL provides pre-built, template-based data structures and
+              algorithms optimized for execution speed [source: 1, 3].
+            </p>
+
+            <pre><code><span class="code-keyword">#include</span> <span class="code-string">&lt;iostream&gt;</span>
+<span class="code-keyword">#include</span> <span class="code-string">&lt;vector&gt;</span>
+<span class="code-keyword">#include</span> <span class="code-string">&lt;unordered_map&gt;</span>
+<span class="code-keyword">#include</span> <span class="code-string">&lt;algorithm&gt;</span>
+
+<span class="code-type">int</span> <span class="code-func">main</span>() {
+    <span class="code-comment">// 1. Dynamic Vector [source: 1]</span>
+    std::vector&lt;<span class="code-type">int</span>&gt; vec = {<span class="code-num">40</span>, <span class="code-num">10</span>, <span class="code-num">30</span>, <span class="code-num">20</span>};
+    std::sort(vec.begin(), vec.end()); <span class="code-comment">// O(n log n) Introsort [source: 1, 6]</span>
+
+    <span class="code-comment">// 2. Hash Map for O(1) Average Lookup [source: 1]</span>
+    std::unordered_map&lt;std::string, <span class="code-type">int</span>&gt; marks;
+    marks[<span class="code-string">"Alok"</span>] = <span class="code-num">98</span>;
+    marks[<span class="code-string">"Rahul"</span>] = <span class="code-num">89</span>;
+
+    <span class="code-keyword">if</span> (marks.find(<span class="code-string">"Alok"</span>) != marks.end()) {
+        std::cout &lt;&lt; <span class="code-string">"Score: "</span> &lt;&lt; marks[<span class="code-string">"Alok"</span>] &lt;&lt; std::endl;
+    }
+    <span class="code-keyword">return</span> <span class="code-num">0</span>;
+}</code></pre>
+          </article>
+
+          <!-- MODULE 4: LINKED LISTS -->
+          <article class="topic-card" id="c4">
+            <span class="topic-badge mb-2 d-inline-block">Module 04</span>
+            <h2 class="fw-bold text-white mb-3">
+              4. Linked List Data Structures
+            </h2>
+            <p class="text-secondary">
+              Linked lists store elements in contiguous or non-contiguous nodes
+              linked together via pointer references [source: 1, 4].
+            </p>
+
+            <pre><code><span class="code-keyword">struct</span> <span class="code-type">Node</span> {
+    <span class="code-type">int</span> data;
+    <span class="code-type">Node</span>* next;
+    <span class="code-func">Node</span>(<span class="code-type">int</span> val) : data(val), next(<span class="code-keyword">nullptr</span>) {}
+};
+
+<span class="code-comment">// Reversing a Singly Linked List in O(n) Time, O(1) Space [source: 1, 4]</span>
+<span class="code-type">Node</span>* <span class="code-func">reverseList</span>(<span class="code-type">Node</span>* head) {
+    <span class="code-type">Node</span>* prev = <span class="code-keyword">nullptr</span>;
+    <span class="code-type">Node</span>* curr = head;
+    <span class="code-keyword">while</span> (curr != <span class="code-keyword">nullptr</span>) {
+        <span class="code-type">Node</span>* nextTemp = curr-&gt;next;
+        curr-&gt;next = prev;
+        prev = curr;
+        curr = nextTemp;
+    }
+    <span class="code-keyword">return</span> prev;
+}</code></pre>
+          </article>
+
+          <!-- MODULE 6: TREES & HEAPS -->
+          <article class="topic-card" id="c6">
+            <span class="topic-badge mb-2 d-inline-block">Module 05</span>
+            <h2 class="fw-bold text-white mb-3">
+              5. Binary Search Trees & Priority Heaps
+            </h2>
+            <p class="text-secondary">
+              Non-linear hierarchical data structures reduce search complexity
+              from $\mathcal{O}(n)$ to $\mathcal{O}(\log n)$ [source: 1, 4].
+            </p>
+
+            <div class="row g-3 my-3">
+              <div class="col-md-6">
+                <div
+                  class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 h-100"
+                >
+                  <h6 class="fw-bold text-danger">Binary Search Tree (BST)</h6>
+                  <p class="small text-secondary mb-0">
+                    For every node $X$, all keys in the left subtree are smaller
+                    ($< X$) and all keys in the right subtree are larger ($> X$)
+                    [source: 4, 7].
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div
+                  class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 h-100"
+                >
+                  <h6 class="fw-bold text-warning">Max Heap / Min Heap</h6>
+                  <p class="small text-secondary mb-0">
+                    Complete binary tree where the parent node is strictly
+                    greater (or smaller) than its child nodes. Implemented in
+                    STL via <code>std::priority_queue</code> [source: 1, 4].
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- MODULE 7: GRAPHS -->
+          <article class="topic-card" id="c7">
+            <span class="topic-badge mb-2 d-inline-block">Module 06</span>
+            <h2 class="fw-bold text-white mb-3">
+              6. Graph Algorithms: BFS & DFS
+            </h2>
+            <p class="text-secondary">
+              A Graph consists of vertices $V$ and edges $E$ [source: 4, 9].
+              Represented using an <strong>Adjacency List</strong> for optimal
+              $\mathcal{O}(V + E)$ space complexity [source: 4, 5].
+            </p>
+
+            <pre><code><span class="code-keyword">#include</span> <span class="code-string">&lt;vector&gt;</span>
+<span class="code-keyword">#include</span> <span class="code-string">&lt;queue&gt;</span>
+
+<span class="code-comment">// Breadth-First Search (BFS) Traversal [source: 4]</span>
+<span class="code-type">void</span> <span class="code-func">bfs</span>(<span class="code-type">int</span> startNode, <span class="code-keyword">const</span> std::vector&lt;std::vector&lt;<span class="code-type">int</span>&gt;&gt;&amp; adj, <span class="code-type">int</span> V) {
+    std::vector&lt;<span class="code-type">bool</span>&gt; visited(V, <span class="code-keyword">false</span>);
+    std::queue&lt;<span class="code-type">int</span>&gt; q;
+
+    visited[startNode] = <span class="code-keyword">true</span>;
+    q.push(startNode);
+
+    <span class="code-keyword">while</span> (!q.empty()) {
+        <span class="code-type">int</span> node = q.front();
+        q.pop();
+
+        <span class="code-keyword">for</span> (<span class="code-type">int</span> neighbor : adj[node]) {
+            <span class="code-keyword">if</span> (!visited[neighbor]) {
+                visited[neighbor] = <span class="code-keyword">true</span>;
+                q.push(neighbor);
+            }
+        }
+    }
+}</code></pre>
+          </article>
+
+          <!-- MODULE 8: DYNAMIC PROGRAMMING -->
+          <article class="topic-card" id="c8">
+            <span class="topic-badge mb-2 d-inline-block">Module 07</span>
+            <h2 class="fw-bold text-white mb-3">
+              7. Dynamic Programming & Memoization
+            </h2>
+            <p class="text-secondary">
+              DP solves complex problems by breaking them down into simpler
+              <strong>overlapping subproblems</strong> with
+              <strong>optimal substructure</strong>
+              properties [source: 1, 6].
+            </p>
+
+            <div class="row g-3 my-3">
+              <div class="col-md-6">
+                <div
+                  class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25"
+                >
+                  <h6 class="fw-bold text-danger">Top-Down (Memoization)</h6>
+                  <p class="small text-secondary mb-0">
+                    Recursive breakdown storing subproblem outputs into a cache
+                    table ($DP$ array).
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div
+                  class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25"
+                >
+                  <h6 class="fw-bold text-success">Bottom-Up (Tabulation)</h6>
+                  <p class="small text-secondary mb-0">
+                    Iterative problem building starting from base cases,
+                    eliminating function stack overhead.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- MODULE 9: PLACEMENT CHEATSHEET -->
+          <article class="topic-card" id="c9">
+            <span class="topic-badge mb-2 d-inline-block">Module 08</span>
+            <h2 class="fw-bold text-white mb-3">
+              8. Top Technical Placement Interview Questions
+            </h2>
+
+            <div class="accordion" id="engineAccordion">
+              <div class="accordion-item bg-dark border-secondary">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button bg-dark text-danger collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#cq1"
+                  >
+                    Why is QuickSort preferred over MergeSort for Arrays?
+                  </button>
+                </h2>
+                <div id="cq1" class="accordion-collapse collapse show">
+                  <div class="accordion-body text-secondary small">
+                    QuickSort operates <strong>in-place</strong> with
+                    $\mathcal{O}(1)$ auxiliary space complexity (aside from
+                    recursion stack frames) and exhibits strong cache locality
+                    [source: 6]. In contrast, MergeSort requires
+                    $\mathcal{O}(n)$ additional heap space for temp allocations,
+                    making it slower on standard array architectures [source:
+                    6].
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item bg-dark border-secondary mt-2">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button bg-dark text-danger collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#cq2"
+                  >
+                    What happens when you don't use virtual destructors in C++?
+                  </button>
+                </h2>
+                <div id="cq2" class="accordion-collapse collapse">
+                  <div class="accordion-body text-secondary small">
+                    If a derived class object is deleted through a pointer to
+                    the base class without a <code>virtual</code> destructor, it
+                    causes <strong>undefined behavior</strong>. Only the base
+                    class destructor will execute, leading to resource and
+                    memory leaks for any dynamic fields owned by the derived
+                    class [source: 4].
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="py-4 border-top border-secondary border-opacity-25 mt-5">
+      <div class="container text-center small text-secondary">
+        <p class="mb-1 text-white-50">
+          &copy; 2025 EduGlow. Engineered & Curated with ⚡ by
+          <strong>Alok Rajpoot</strong>.
+        </p>
+        <p class="mb-0">
+          Algorithmic Engine &bull; University Exam & Competitive Placement
+          Track
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

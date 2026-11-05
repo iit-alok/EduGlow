@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Python & Data Science Mastery - EduGlow | by Alok Rajpoot</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans & Fira Code (Matching MERN Theme) -->
+    <link rel="icon" type="image/png" href="2.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --emerald-primary: #10b981;
+        --emerald-hover: #059669;
+        --dark-bg: #0f172a;
+        --dark-card: #1e293b;
+        --code-bg: #1e1e2e;
+      }
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #f8fafc;
+        color: #334155;
+        scroll-behavior: smooth;
+      }
+
+      /* Navbar */
+      .navbar-eduglow {
+        background-color: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .brand-badge {
+        font-size: 0.65rem;
+        background-color: var(--emerald-primary);
+        color: #fff;
+        padding: 2px 6px;
+        border-radius: 4px;
+        margin-left: 5px;
+        vertical-align: middle;
+      }
+
+      /* Header Hero */
+      .notes-hero {
+        background: linear-gradient(135deg, #0f172a 0%, #064e3b 100%);
+        color: white;
+        padding: 65px 0 45px 0;
+        border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+      }
+
+      /* Sticky Sidebar TOC */
+      .sidebar-toc {
+        position: sticky;
+        top: 90px;
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+      }
+
+      .sidebar-toc a {
+        color: #64748b;
+        text-decoration: none;
+        font-size: 0.83rem;
+        display: block;
+        padding: 5px 10px;
+        border-radius: 6px;
+        transition: all 0.2s;
+      }
+
+      .sidebar-toc a:hover,
+      .sidebar-toc a.active {
+        color: var(--emerald-hover);
+        background-color: #ecfdf5;
+        font-weight: 600;
+      }
+
+      /* Cards */
+      .topic-card {
+        background: white;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+      }
+
+      .topic-badge {
+        background-color: #d1fae5;
+        color: #065f46;
+        font-weight: 700;
+        font-size: 0.72rem;
+        padding: 4px 10px;
+        border-radius: 20px;
+        text-transform: uppercase;
+      }
+
+      .topic-img {
+        border-radius: 12px;
+        max-height: 260px;
+        width: 100%;
+        object-fit: cover;
+        border: 1px solid #e2e8f0;
+      }
+
+      /* Code Blocks */
+      pre {
+        background-color: var(--code-bg);
+        color: #a6accd;
+        font-family: "Fira Code", monospace;
+        padding: 16px;
+        border-radius: 10px;
+        font-size: 0.83rem;
+        overflow-x: auto;
+        border: 1px solid #334155;
+      }
+
+      code {
+        font-family: "Fira Code", monospace;
+      }
+
+      .code-keyword {
+        color: #f07178;
+        font-weight: 600;
+      }
+      .code-func {
+        color: #82aaff;
+        font-weight: 600;
+      }
+      .code-string {
+        color: #c3e88d;
+      }
+      .code-comment {
+        color: #676e95;
+        font-style: italic;
+      }
+      .code-num {
+        color: #ffcb6b;
+      }
+
+      .btn-emerald {
+        background-color: var(--emerald-primary);
+        color: white;
+        font-weight: 600;
+      }
+
+      .btn-emerald:hover {
+        background-color: var(--emerald-hover);
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-eduglow sticky-top">
+      <div class="container">
+        <a
+          class="navbar-brand navbar-brand-glow fw-bold d-flex flex-column align-items-start lh-sm"
+          href="index.html"
+        >
+          <div>
+            <i class="bi bi-mortarboard-fill text-success"></i>
+            EduGlow
+            <span class="brand-badge">PRO v2</span>
+          </div>
+          <span
+            class="text-white-50 fw-normal"
+            style="
+              font-size: 0.65rem;
+              letter-spacing: 1px;
+              padding-left: 1.6rem;
+              margin-top: -2px;
+            "
+          >
+            by ALOK RAJPOOT
+          </span>
+        </a>
+
+        <div class="ms-auto d-flex gap-2">
+          <a href="index.html" class="btn btn-outline-light btn-sm px-3">
+            <i class="bi bi-arrow-left me-1"></i> Home
+          </a>
+          <a href="java.html" class="btn btn-outline-light btn-sm px-3">
+            <i class="bi bi-cpu me-1"></i> Java
+          </a>
+          <a
+            href="MARNFullStack.html"
+            class="btn btn-outline-light btn-sm px-3"
+          >
+            <i class="bi bi-layers me-1"></i> MERN
+          </a>
+          <button class="btn btn-emerald btn-sm px-3" onclick="window.print()">
+            <i class="bi bi-printer me-1"></i> Print / PDF
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ================= HEADER HERO ================= -->
+    <header class="notes-hero">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-8">
+            <span
+              class="badge bg-success bg-opacity-25 text-white mb-2 px-3 py-1 rounded-pill"
+            >
+              <i class="bi bi-cpu-fill me-1"></i> Data Intelligence Track
+            </span>
+            <h1 class="display-5 fw-bold text-white mb-2">
+              Python & Data Science
+              <span class="text-success">Master Engine</span>
+            </h1>
+            <p class="lead text-white-50 fs-6 pe-lg-4">
+              Curated by <strong>Alok Rajpoot</strong>. From Pythonic
+              foundations, list comprehensions, and generators to NumPy
+              vectorization, Pandas analytics, and Scikit-Learn machine learning
+              pipelines.
+            </p>
+          </div>
+          <div class="col-lg-4 text-lg-end d-none d-lg-block">
+            <img
+              src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=500&auto=format&fit=crop"
+              alt="Python Matrix Code"
+              class="img-fluid rounded-4 shadow border border-secondary border-opacity-25"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= MAIN LAYOUT ================= -->
+    <div class="container my-5">
+      <div class="row g-4">
+        <!-- Sticky Sidebar (Table of Contents) -->
+        <div class="col-lg-3 d-none d-lg-block">
+          <div class="sidebar-toc">
+            <h6 class="fw-bold mb-3 text-dark">
+              <i class="bi bi-compass text-success me-2"></i>Curriculum
+            </h6>
+            <nav class="nav flex-column gap-1">
+              <small
+                class="text-uppercase fw-bold text-muted mt-2"
+                style="font-size: 0.7rem"
+                >Core Python</small
+              >
+              <a href="#p1">1. Foundations & Memory Model</a>
+              <a href="#p2">2. Advanced Collections & Comprehensions</a>
+              <a href="#p3">3. Generators & Decorators</a>
+
+              <small
+                class="text-uppercase fw-bold text-muted mt-3"
+                style="font-size: 0.7rem"
+                >Data Stack</small
+              >
+              <a href="#p4">4. NumPy Array Operations</a>
+              <a href="#p5">5. Pandas Data Wrangling</a>
+              <a href="#p6">6. Visualization (Matplotlib & Seaborn)</a>
+
+              <small
+                class="text-uppercase fw-bold text-muted mt-3"
+                style="font-size: 0.7rem"
+                >Machine Learning</small
+              >
+              <a href="#p7">7. Scikit-Learn ML Pipelines</a>
+              <a href="#p8">8. Placements & Interview Q&A</a>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="col-lg-9">
+          <!-- MODULE 1: FOUNDATIONS -->
+          <article class="topic-card" id="p1">
+            <span class="topic-badge mb-2 d-inline-block">Module 01</span>
+            <h2 class="fw-bold text-dark mb-3">
+              1. Python Foundations, Memory & Dynamic Typing
+            </h2>
+            <p class="text-muted">
+              In Python, <strong>everything is an object</strong>. Variables do
+              not hold values directly; they are named references pointing to
+              memory addresses on the Private Heap.
+            </p>
+
+            <div class="table-responsive my-3">
+              <table class="table table-bordered align-middle">
+                <thead class="table-light">
+                  <tr>
+                    <th>Category</th>
+                    <th>Mutability</th>
+                    <th>Data Types</th>
+                    <th>Memory Behavior</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="fw-bold text-danger">Immutable</td>
+                    <td>Cannot change in-place</td>
+                    <td>
+                      <code>int</code>, <code>float</code>, <code>str</code>,
+                      <code>tuple</code>, <code>frozenset</code>
+                    </td>
+                    <td>Modifying creates a new object in memory.</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold text-success">Mutable</td>
+                    <td>Can change in-place</td>
+                    <td>
+                      <code>list</code>, <code>dict</code>, <code>set</code>,
+                      <code>bytearray</code>
+                    </td>
+                    <td>Altered without altering reference address.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h6 class="fw-bold text-dark mt-4">
+              Understanding Reference Passing:
+            </h6>
+            <pre><code><span class="code-comment"># Memory pointer demonstration</span>
+a = [<span class="code-num">1</span>, <span class="code-num">2</span>, <span class="code-num">3</span>]
+b = a  <span class="code-comment"># b points to the exact same heap memory address</span>
+b.append(<span class="code-num">4</span>)
+
+<span class="code-func">print</span>(a)  <span class="code-comment"># Output: [1, 2, 3, 4] -> Both changed!</span>
+<span class="code-func">print</span>(<span class="code-func">id</span>(a) == <span class="code-func">id</span>(b))  <span class="code-comment"># True (Identical memory ID)</span></code></pre>
+          </article>
+
+          <!-- MODULE 2: COMPREHENSIONS -->
+          <article class="topic-card" id="p2">
+            <span class="topic-badge mb-2 d-inline-block">Module 02</span>
+            <h2 class="fw-bold text-dark mb-3">
+              2. Advanced Collections & Comprehensions
+            </h2>
+            <p class="text-muted">
+              Comprehensions provide a concise syntax for constructing
+              collections. They execute faster than standard
+              <code>for</code> loops because bytecode execution runs at C-speed
+              inside the Python runtime.
+            </p>
+
+            <pre><code><span class="code-comment"># List Comprehension with condition</span>
+numbers = [<span class="code-num">1</span>, <span class="code-num">2</span>, <span class="code-num">3</span>, <span class="code-num">4</span>, <span class="code-num">5</span>, <span class="code-num">6</span>, <span class="code-num">7</span>, <span class="code-num">8</span>, <span class="code-num">9</span>, <span class="code-num">10</span>]
+even_squares = [x**<span class="code-num">2</span> <span class="code-keyword">for</span> x <span class="code-keyword">in</span> numbers <span class="code-keyword">if</span> x % <span class="code-num">2</span> == <span class="code-num">0</span>]
+
+<span class="code-comment"># Dictionary Comprehension</span>
+scores = {<span class="code-string">"Alok"</span>: <span class="code-num">98</span>, <span class="code-string">"Rahul"</span>: <span class="code-num">82</span>, <span class="code-string">"Ankit"</span>: <span class="code-num">91</span>}
+top_scorers = {k: v <span class="code-keyword">for</span> k, v <span class="code-keyword">in</span> scores.items() <span class="code-keyword">if</span> v > <span class="code-num">90</span>}
+
+<span class="code-func">print</span>(even_squares)  <span class="code-comment"># [4, 16, 36, 64, 100]</span>
+<span class="code-func">print</span>(top_scorers)   <span class="code-comment"># {'Alok': 98, 'Ankit': 91}</span></code></pre>
+          </article>
+
+          <!-- MODULE 3: GENERATORS & DECORATORS -->
+          <article class="topic-card" id="p3">
+            <span class="topic-badge mb-2 d-inline-block">Module 03</span>
+            <h2 class="fw-bold text-dark mb-3">
+              3. Generators & Decorator Functions
+            </h2>
+            <p class="text-muted">
+              Generators produce sequences on-demand using the
+              <code>yield</code> keyword instead of computing values upfront,
+              enabling processing of massive multi-gigabyte datasets without
+              memory crashes.
+            </p>
+
+            <h6 class="fw-bold text-dark mt-3">
+              Production Decorator Pattern (Execution Timer):
+            </h6>
+            <pre><code><span class="code-keyword">import</span> time
+<span class="code-keyword">from</span> functools <span class="code-keyword">import</span> wraps
+
+<span class="code-keyword">def</span> <span class="code-func">performance_timer</span>(func):
+    <span class="code-keyword">@wraps</span>(func)
+    <span class="code-keyword">def</span> <span class="code-func">wrapper</span>(*args, **kwargs):
+        start_time = time.perf_counter()
+        result = func(*args, **kwargs)
+        duration = time.perf_counter() - start_time
+        <span class="code-func">print</span>(f<span class="code-string">"⚡ [{func.__name__}] executed in {duration:.6f}s"</span>)
+        <span class="code-keyword">return</span> result
+    <span class="code-keyword">return</span> wrapper
+
+<span class="code-keyword">@performance_timer</span>
+<span class="code-keyword">def</span> <span class="code-func">generate_numbers</span>(n):
+    <span class="code-keyword">return</span> [i * <span class="code-num">2</span> <span class="code-keyword">for</span> i <span class="code-keyword">in</span> <span class="code-func">range</span>(n)]
+
+generate_numbers(<span class="code-num">1_000_000</span>)</code></pre>
+          </article>
+
+          <!-- MODULE 4: NUMPY -->
+          <article class="topic-card" id="p4">
+            <span class="topic-badge mb-2 d-inline-block">Module 04</span>
+            <h2 class="fw-bold text-dark mb-3">
+              4. NumPy Vectorization & Array Computations
+            </h2>
+            <p class="text-muted">
+              NumPy replaces slow Python arrays with homogeneous, contiguous
+              C-allocated <code>ndarray</code> structures, enabling SIMD
+              vectorization.
+            </p>
+
+            <div class="my-3">
+              <img
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"
+                alt="Vectorized array calculations"
+                class="topic-img mb-2"
+              />
+            </div>
+
+            <pre><code><span class="code-keyword">import</span> numpy <span class="code-keyword">as</span> np
+
+<span class="code-comment"># Matrix creation and broad-casting</span>
+matrix_a = np.array([[<span class="code-num">1</span>, <span class="code-num">2</span>, <span class="code-num">3</span>], [<span class="code-num">4</span>, <span class="code-num">5</span>, <span class="code-num">6</span>]])
+vector = np.array([<span class="code-num">10</span>, <span class="code-num">20</span>, <span class="code-num">30</span>])
+
+<span class="code-comment"># Vectorized addition across columns without manual loops</span>
+broadcast_sum = matrix_a + vector
+
+<span class="code-comment"># Useful statistical metrics</span>
+mean_val = np.mean(matrix_a)
+dot_product = np.dot(matrix_a, np.array([<span class="code-num">1</span>, <span class="code-num">1</span>, <span class="code-num">1</span>]))
+
+<span class="code-func">print</span>(<span class="code-string">"Result:\n"</span>, broadcast_sum)</code></pre>
+          </article>
+
+          <!-- MODULE 5: PANDAS -->
+          <article class="topic-card" id="p5">
+            <span class="topic-badge mb-2 d-inline-block">Module 05</span>
+            <h2 class="fw-bold text-dark mb-3">
+              5. Pandas Data Wrangling & Analysis
+            </h2>
+            <p class="text-muted">
+              Pandas introduces the 2D tabular <strong>DataFrame</strong>. It
+              provides operations for merging, slicing, handling missing values,
+              and executing SQL-like aggregations.
+            </p>
+
+            <pre><code><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
+
+data = {
+    <span class="code-string">"student"</span>: [<span class="code-string">"Alok"</span>, <span class="code-string">"Ankit"</span>, <span class="code-string">"Rahul"</span>, <span class="code-string">"Amit"</span>],
+    <span class="code-string">"track"</span>: [<span class="code-string">"Full Stack"</span>, <span class="code-string">"AI/ML"</span>, <span class="code-string">"AI/ML"</span>, <span class="code-string">"Backend"</span>],
+    <span class="code-string">"score"</span>: [<span class="code-num">95</span>, <span class="code-num">92</span>, <span class="code-keyword">None</span>, <span class="code-num">88</span>]
+}
+
+df = pd.DataFrame(data)
+
+<span class="code-comment"># 1. Fill missing values</span>
+df[<span class="code-string">"score"</span>] = df[<span class="code-string">"score"</span>].fillna(df[<span class="code-string">"score"</span>].mean())
+
+<span class="code-comment"># 2. Filtering</span>
+ai_students = df[df[<span class="code-string">"track"</span>] == <span class="code-string">"AI/ML"</span>]
+
+<span class="code-comment"># 3. GroupBy Aggregations</span>
+avg_scores = df.groupby(<span class="code-string">"track"</span>)[<span class="code-string">"score"</span>].mean().reset_index()
+
+<span class="code-func">print</span>(avg_scores)</code></pre>
+          </article>
+
+          <!-- MODULE 6: VISUALIZATION -->
+          <article class="topic-card" id="p6">
+            <span class="topic-badge mb-2 d-inline-block">Module 06</span>
+            <h2 class="fw-bold text-dark mb-3">
+              6. Data Visualization (Matplotlib & Seaborn)
+            </h2>
+            <p class="text-muted">
+              Translating quantitative patterns into clear visual insights
+              through histograms, scatter plots, and correlation heatmaps.
+            </p>
+
+            <pre><code><span class="code-keyword">import</span> matplotlib.pyplot <span class="code-keyword">as</span> plt
+<span class="code-keyword">import</span> seaborn <span class="code-keyword">as</span> sns
+
+<span class="code-comment"># Plot configuration</span>
+plt.figure(figsize=(<span class="code-num">8</span>, <span class="code-num">4</span>))
+
+<span class="code-comment"># Correlation Heatmap</span>
+corr = df.corr(numeric_only=<span class="code-keyword">True</span>)
+sns.heatmap(corr, annot=<span class="code-keyword">True</span>, cmap=<span class="code-string">'coolwarm'</span>, linewidths=<span class="code-num">0.5</span>)
+
+plt.title(<span class="code-string">"Feature Correlation Matrix"</span>, fontsize=<span class="code-num">12</span>)
+plt.tight_layout()
+<span class="code-comment"># plt.show()</span></code></pre>
+          </article>
+
+          <!-- MODULE 7: SCIKIT-LEARN ML -->
+          <article class="topic-card" id="p7">
+            <span class="topic-badge mb-2 d-inline-block">Module 07</span>
+            <h2 class="fw-bold text-dark mb-3">
+              7. Machine Learning Pipelines (Scikit-Learn)
+            </h2>
+            <p class="text-muted">
+              Building an end-to-end model pipeline: Train/Test split, feature
+              normalization via <code>StandardScaler</code>, and classification.
+            </p>
+
+            <pre><code><span class="code-keyword">from</span> sklearn.model_selection <span class="code-keyword">import</span> train_test_split
+<span class="code-keyword">from</span> sklearn.preprocessing <span class="code-keyword">import</span> StandardScaler
+<span class="code-keyword">from</span> sklearn.ensemble <span class="code-keyword">import</span> RandomForestClassifier
+<span class="code-keyword">from</span> sklearn.metrics <span class="code-keyword">import</span> accuracy_score
+
+<span class="code-comment"># Feature Matrix X and Target vector y</span>
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=<span class="code-num">0.2</span>, random_state=<span class="code-num">42</span>)
+
+<span class="code-comment"># Feature Scaling</span>
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+<span class="code-comment"># Model Training</span>
+model = RandomForestClassifier(n_estimators=<span class="code-num">100</span>, random_state=<span class="code-num">42</span>)
+model.fit(X_train_scaled, y_train)
+
+<span class="code-comment"># Evaluation</span>
+predictions = model.predict(X_test_scaled)
+acc = accuracy_score(y_test, predictions)
+<span class="code-func">print</span>(f<span class="code-string">"Model Accuracy: {acc * 100:.2f}%"</span>)</code></pre>
+          </article>
+
+          <!-- MODULE 8: INTERVIEW CHEATSHEET -->
+          <article class="topic-card" id="p8">
+            <span class="topic-badge mb-2 d-inline-block">Module 08</span>
+            <h2 class="fw-bold text-dark mb-3">
+              8. Top Technical Placement Interview Questions
+            </h2>
+
+            <div class="accordion" id="faqAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#pq1"
+                  >
+                    What is the Python Global Interpreter Lock (GIL)?
+                  </button>
+                </h2>
+                <div id="pq1" class="accordion-collapse collapse show">
+                  <div class="accordion-body text-muted small">
+                    The <strong>GIL</strong> is a mutex lock used by CPython to
+                    prevent multiple native OS threads from executing Python
+                    bytecode simultaneously. It exists to protect CPython's
+                    reference-counting memory management from race conditions.
+                    For CPU-bound tasks, developers use the
+                    <code>multiprocessing</code> module instead of
+                    <code>threading</code> to bypass the GIL.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#pq2"
+                  >
+                    What is the difference between shallow copy and deep copy?
+                  </button>
+                </h2>
+                <div id="pq2" class="accordion-collapse collapse">
+                  <div class="accordion-body text-muted small">
+                    A <strong>shallow copy</strong> (<code>copy.copy()</code>)
+                    constructs a new collection object, but populates it with
+                    references to the child objects found in the original. A
+                    <strong>deep copy</strong> (<code>copy.deepcopy()</code>)
+                    recursively copies all nested objects, ensuring mutations to
+                    the copied object do not affect the original.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer
+      class="bg-dark text-white py-4 mt-5 border-top border-secondary border-opacity-25"
+    >
+      <div class="container text-center small text-white-50">
+        <p class="mb-1">
+          &copy; 2025 EduGlow. Engineered & Curated with ❤️ by
+          <strong>Alok Rajpoot</strong>.
+        </p>
+        <p class="mb-0">
+          Python & Data Science Engineering Blueprint &bull; University &
+          Placement Aligned
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Mining & Warehousing - EduGlow | by Alok Rajpoot</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="icon" type="image/png" href="2.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --amber-primary: #f59e0b;
+        --gold-glow: #fbbf24;
+        --vault-dark: #0b0d13;
+        --vault-card: #121622;
+        --vault-border: rgba(245, 158, 11, 0.22);
+        --code-bg: #0e111a;
+        --text-muted-amber: #94a3b8;
+      }
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: var(--vault-dark);
+        color: #e2e8f0;
+        scroll-behavior: smooth;
+      }
+
+      /* Navbar */
+      .navbar-vault {
+        background-color: rgba(11, 13, 19, 0.94);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--vault-border);
+      }
+
+      .brand-badge-amber {
+        font-size: 0.65rem;
+        background: linear-gradient(135deg, var(--amber-primary), #d97706);
+        color: #0b0d13;
+        font-weight: 800;
+        padding: 2px 7px;
+        border-radius: 4px;
+        margin-left: 6px;
+      }
+
+      .nav-chip {
+        color: #cbd5e1;
+        font-size: 0.8rem;
+        padding: 5px 12px;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .nav-chip:hover {
+        color: var(--gold-glow);
+        border-color: var(--amber-primary);
+        background: rgba(245, 158, 11, 0.1);
+      }
+
+      .nav-chip.active-chip {
+        color: #0b0d13;
+        background: linear-gradient(
+          135deg,
+          var(--gold-glow),
+          var(--amber-primary)
+        );
+        border-color: var(--gold-glow);
+        font-weight: 700;
+      }
+
+      /* Header Hero */
+      .vault-hero {
+        background:
+          radial-gradient(
+            circle at 85% 20%,
+            rgba(245, 158, 11, 0.14) 0%,
+            transparent 50%
+          ),
+          linear-gradient(180deg, #0b0d13 0%, #121622 100%);
+        border-bottom: 1px solid var(--vault-border);
+        padding: 70px 0 50px 0;
+      }
+
+      .gradient-text-amber {
+        background: linear-gradient(
+          90deg,
+          #fbbf24 0%,
+          #f59e0b 60%,
+          #fb923c 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Sticky Sidebar TOC */
+      .sidebar-toc {
+        position: sticky;
+        top: 90px;
+        background: var(--vault-card);
+        border-radius: 14px;
+        padding: 22px;
+        border: 1px solid var(--vault-border);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+      }
+
+      .sidebar-toc a {
+        color: var(--text-muted-amber);
+        text-decoration: none;
+        font-size: 0.82rem;
+        display: block;
+        padding: 6px 10px;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+      }
+
+      .sidebar-toc a:hover,
+      .sidebar-toc a.active {
+        color: #ffffff;
+        background: rgba(245, 158, 11, 0.12);
+        border-left: 2px solid var(--amber-primary);
+        padding-left: 12px;
+      }
+
+      /* Content Cards */
+      .topic-card {
+        background: var(--vault-card);
+        border-radius: 16px;
+        border: 1px solid var(--vault-border);
+        padding: 32px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+      }
+
+      .topic-badge {
+        background: rgba(245, 158, 11, 0.12);
+        color: var(--gold-glow);
+        font-weight: 700;
+        font-size: 0.72rem;
+        padding: 4px 12px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border: 1px solid rgba(245, 158, 11, 0.35);
+      }
+
+      .topic-img {
+        border-radius: 12px;
+        max-height: 270px;
+        width: 100%;
+        object-fit: cover;
+        border: 1px solid var(--vault-border);
+      }
+
+      /* Code Blocks */
+      pre {
+        background-color: var(--code-bg);
+        color: #e2e8f0;
+        font-family: "JetBrains Mono", monospace;
+        padding: 18px;
+        border-radius: 10px;
+        font-size: 0.83rem;
+        overflow-x: auto;
+        border: 1px solid rgba(245, 158, 11, 0.25);
+        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
+      }
+
+      code {
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .code-keyword {
+        color: #f43f5e;
+        font-weight: 600;
+      }
+      .code-class {
+        color: var(--gold-glow);
+        font-weight: 600;
+      }
+      .code-method {
+        color: #38bdf8;
+      }
+      .code-string {
+        color: #4ade80;
+      }
+      .code-comment {
+        color: #64748b;
+        font-style: italic;
+      }
+
+      /* Buttons */
+      .btn-amber {
+        background: linear-gradient(
+          135deg,
+          var(--gold-glow),
+          var(--amber-primary)
+        );
+        color: #0b0d13;
+        font-weight: 700;
+        border: none;
+      }
+
+      .btn-amber:hover {
+        box-shadow: 0 0 16px rgba(245, 158, 11, 0.45);
+        color: #0b0d13;
+      }
+
+      /* Custom Amber Table */
+      .table-vault {
+        color: #cbd5e1;
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .table-vault th {
+        background: rgba(245, 158, 11, 0.12);
+        color: var(--gold-glow);
+        border-bottom: 1px solid var(--vault-border);
+      }
+
+      .table-vault td {
+        background: transparent;
+        border-color: rgba(255, 255, 255, 0.06);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ================= NAVBAR WITH ALL SUBJECTS ================= -->
+    <nav class="navbar navbar-expand-xl navbar-dark navbar-vault sticky-top">
+      <div class="container">
+        <!-- Logo & Author -->
+        <a
+          class="navbar-brand fw-bold d-flex flex-column align-items-start lh-sm"
+          href="index.html"
+        >
+          <div>
+            <i class="bi bi-database-fill-gear text-warning me-1"></i>
+            <span class="text-white">EduGlow</span>
+            <span class="brand-badge-amber">BI & WAREHOUSE</span>
+          </div>
+          <span
+            class="text-white-50 fw-normal"
+            style="
+              font-size: 0.65rem;
+              letter-spacing: 1px;
+              padding-left: 1.6rem;
+              margin-top: -2px;
+            "
+          >
+            by ALOK RAJPOOT
+          </span>
+        </a>
+
+        <!-- Responsive Collapse Trigger -->
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navHub"
+        >
+          <i class="bi bi-list text-warning fs-3"></i>
+        </button>
+
+        <!-- All Subject Direct Links -->
+        <div class="collapse navbar-collapse justify-content-end" id="navHub">
+          <div class="d-flex flex-wrap gap-2 my-2 my-xl-0 align-items-center">
+            <a href="index.html" class="nav-chip">
+              <i class="bi bi-house-door me-1"></i> Home
+            </a>
+            <a href="java.html" class="nav-chip">
+              <i class="bi bi-filetype-java me-1"></i> Java
+            </a>
+            <a href="mern.html" class="nav-chip">
+              <i class="bi bi-layers me-1"></i> MERN
+            </a>
+            <a href="python.html" class="nav-chip">
+              <i class="bi bi-filetype-py me-1"></i> Python
+            </a>
+            <a href="C++.html" class="nav-chip">
+              <i class="bi bi-cpu me-1"></i> C++ & DSA
+            </a>
+            <span class="nav-chip active-chip">
+              <i class="bi bi-server me-1"></i> Data Mining
+            </span>
+            <button
+              class="btn btn-amber btn-sm px-3 ms-xl-2"
+              onclick="window.print()"
+            >
+              <i class="bi bi-printer me-1"></i> Print / PDF
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ================= HEADER HERO ================= -->
+    <header class="vault-hero">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-8">
+            <span class="topic-badge mb-3 d-inline-block">
+              <i class="bi bi-diagram-3-fill me-1"></i> Enterprise BI &
+              Analytics
+            </span>
+            <h1 class="display-5 fw-bold text-white mb-2">
+              Data Warehousing &
+              <span class="gradient-text-amber">Data Mining Engine</span>
+            </h1>
+            <p class="lead text-secondary fs-6 pe-lg-4">
+              Curated by <strong>Alok Rajpoot</strong>. Master multidimensional
+              data modeling, Star & Snowflake schemas, KDD pipeline, ETL
+              operations, Apriori mining, Decision trees, and Cluster analysis.
+            </p>
+          </div>
+          <div class="col-lg-4 text-lg-end d-none d-lg-block">
+            <img
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=500&auto=format&fit=crop"
+              alt="Data Warehouse Visualization"
+              class="img-fluid rounded-4 shadow border border-warning border-opacity-25"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= MAIN LAYOUT ================= -->
+    <div class="container my-5">
+      <div class="row g-4">
+        <!-- Sticky Sidebar (Table of Contents) -->
+        <div class="col-lg-3 d-none d-lg-block">
+          <div class="sidebar-toc">
+            <h6 class="fw-bold mb-3 text-white">
+              <i class="bi bi-compass text-warning me-2"></i>Curriculum Map
+            </h6>
+            <nav class="nav flex-column gap-1">
+              <small
+                class="text-uppercase fw-bold text-warning mt-2"
+                style="font-size: 0.68rem; letter-spacing: 1px"
+                >Data Warehousing</small
+              >
+              <a href="#w1">1. KDD Process & Foundations</a>
+              <a href="#w2">2. 3-Tier Architecture & OLAP</a>
+              <a href="#w3">3. Schema Modeling (Star/Snowflake)</a>
+
+              <small
+                class="text-uppercase fw-bold text-warning mt-3"
+                style="font-size: 0.68rem; letter-spacing: 1px"
+                >Data Mining Core</small
+              >
+              <a href="#m1">4. Data Preprocessing Pipeline</a>
+              <a href="#m2">5. Association Rules & Apriori</a>
+              <a href="#m3">6. Classification & Decision Trees</a>
+              <a href="#m4">7. Cluster Analysis (K-Means)</a>
+              <a href="#m5">8. Placement Interview Q&A</a>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="col-lg-9">
+          <!-- MODULE 1: KDD PROCESS -->
+          <article class="topic-card" id="w1">
+            <span class="topic-badge mb-2 d-inline-block">Module 01</span>
+            <h2 class="fw-bold text-white mb-3">
+              1. KDD Process & Core Foundations
+            </h2>
+            <p class="text-secondary">
+              <strong>Knowledge Discovery in Databases (KDD)</strong> is the
+              comprehensive process of converting raw transactional data into
+              actionable business intelligence. Data mining serves as the
+              computational pattern-extraction core within this iterative
+              system.
+            </p>
+
+            <h5 class="fw-bold mt-4 text-warning">The 7 Stages of KDD:</h5>
+            <ol class="text-secondary">
+              <li>
+                <strong>Data Cleaning:</strong> Removes noise, inconsistent
+                codes, and missing values.
+              </li>
+              <li>
+                <strong>Data Integration:</strong> Merges multiple heterogeneous
+                sources (SQL, CSVs, API feeds).
+              </li>
+              <li>
+                <strong>Data Selection:</strong> Retrieves task-relevant subsets
+                from the warehouse.
+              </li>
+              <li>
+                <strong>Data Transformation:</strong> Normalizes or aggregates
+                data into analysis-ready formats.
+              </li>
+              <li>
+                <strong>Data Mining:</strong> Applies intelligent algorithms to
+                uncover latent patterns.
+              </li>
+              <li>
+                <strong>Pattern Evaluation:</strong> Identifies truly
+                interesting rules based on objective metrics.
+              </li>
+              <li>
+                <strong>Knowledge Presentation:</strong> Uses charts and
+                dashboards to convey insights.
+              </li>
+            </ol>
+          </article>
+
+          <!-- MODULE 2: ARCHITECTURE & OLAP -->
+          <article class="topic-card" id="w2">
+            <span class="topic-badge mb-2 d-inline-block">Module 02</span>
+            <h2 class="fw-bold text-white mb-3">
+              2. 3-Tier DW Architecture & OLAP Operations
+            </h2>
+            <p class="text-secondary">
+              Enterprise data warehouses decouple analytical reporting queries
+              from online transactional engines to avoid locking production
+              databases.
+            </p>
+
+            <div class="table-responsive my-3">
+              <table class="table table-vault align-middle">
+                <thead>
+                  <tr>
+                    <th>Dimension</th>
+                    <th>OLTP (Transactional)</th>
+                    <th>OLAP (Analytical)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="fw-bold text-warning">Primary Users</td>
+                    <td>Clerks, DBAs, frontline applications</td>
+                    <td>Business Analysts, Managers, Data Scientists</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold text-warning">Data Content</td>
+                    <td>Current, detailed, highly normalized snapshots</td>
+                    <td>Historical, consolidated, multi-year summaries</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold text-warning">Workload</td>
+                    <td>High-velocity ACID writes and updates</td>
+                    <td>Complex, read-heavy analytical aggregations</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h5 class="fw-bold mt-4 text-warning">
+              Core Multidimensional OLAP Cube Operations:
+            </h5>
+            <ul class="text-secondary">
+              <li>
+                <strong>Roll-up:</strong> Navigates from fine granularities to
+                summary aggregations (e.g., City &rarr; Country).
+              </li>
+              <li>
+                <strong>Drill-down:</strong> Reverses roll-up; breaks broad
+                concepts down into deeper granular units (e.g., Year &rarr;
+                Quarter &rarr; Month).
+              </li>
+              <li>
+                <strong>Slice:</strong> Selects a single dimension value to
+                extract a 2D rectangular sheet.
+              </li>
+              <li>
+                <strong>Dice:</strong> Selects specific sub-ranges across two or
+                more dimensions to form a new sub-cube.
+              </li>
+            </ul>
+          </article>
+
+          <!-- MODULE 3: SCHEMAS -->
+          <article class="topic-card" id="w3">
+            <span class="topic-badge mb-2 d-inline-block">Module 03</span>
+            <h2 class="fw-bold text-white mb-3">
+              3. Multidimensional Schema Design
+            </h2>
+            <p class="text-secondary">
+              Data warehouses organize metrics inside centralized Fact Tables
+              surrounded by descriptive Dimension Tables:
+            </p>
+
+            <div class="row g-3 my-3">
+              <div class="col-md-6">
+                <div
+                  class="p-3 rounded-3 bg-dark border border-warning border-opacity-25 h-100"
+                >
+                  <h6 class="fw-bold text-warning">
+                    <i class="bi bi-star-fill me-1"></i> Star Schema
+                  </h6>
+                  <p class="small text-secondary mb-0">
+                    Features one central <strong>Fact Table</strong> surrounded
+                    by denormalized <strong>Dimension Tables</strong>. Optimized
+                    for query simplicity and fewer SQL table joins.
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div
+                  class="p-3 rounded-3 bg-dark border border-warning border-opacity-25 h-100"
+                >
+                  <h6 class="fw-bold text-info">
+                    <i class="bi bi-snow2 me-1"></i> Snowflake Schema
+                  </h6>
+                  <p class="small text-secondary mb-0">
+                    Normalizes outer dimension tables into hierarchical
+                    sub-tables. Minimizes disk storage and redundancy at the
+                    cost of more join operations.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- MODULE 4: PREPROCESSING -->
+          <article class="topic-card" id="m1">
+            <span class="topic-badge mb-2 d-inline-block">Module 04</span>
+            <h2 class="fw-bold text-white mb-3">
+              4. Data Preprocessing Pipeline
+            </h2>
+            <p class="text-secondary">
+              Real-world records suffer from noise, missing attributes, and
+              conflicting units. Smoothing data via binning techniques cleans
+              signals before training algorithms.
+            </p>
+
+            <pre><code><span class="code-comment">// Java simulation of smoothing noisy warehouse values via Bin Means</span>
+<span class="code-keyword">public class</span> <span class="code-class">DataPreprocessing</span> {
+    <span class="code-keyword">public static double[]</span> <span class="code-method">smoothByBinMeans</span>(<span class="code-keyword">double[]</span> rawData, <span class="code-keyword">int</span> binSize) {
+        <span class="code-keyword">double[]</span> smoothed = <span class="code-keyword">new double</span>[rawData.length];
+        <span class="code-keyword">for</span> (<span class="code-keyword">int</span> i = <span class="code-string">0</span>; i &lt; rawData.length; i += binSize) {
+            <span class="code-keyword">double</span> sum = <span class="code-string">0</span>;
+            <span class="code-keyword">for</span> (<span class="code-keyword">int</span> j = i; j &lt; i + binSize &amp;&amp; j &lt; rawData.length; j++) {
+                sum += rawData[j];
+            }
+            <span class="code-keyword">double</span> mean = sum / binSize;
+            <span class="code-keyword">for</span> (<span class="code-keyword">int</span> j = i; j &lt; i + binSize &amp;&amp; j &lt; rawData.length; j++) {
+                smoothed[j] = mean;
+            }
+        }
+        <span class="code-keyword">return</span> smoothed;
+    }
+}</code></pre>
+          </article>
+
+          <!-- MODULE 5: ASSOCIATION RULES -->
+          <article class="topic-card" id="m2">
+            <span class="topic-badge mb-2 d-inline-block">Module 05</span>
+            <h2 class="fw-bold text-white mb-3">
+              5. Association Rules & Apriori Algorithm
+            </h2>
+            <p class="text-secondary">
+              Frequently utilized in Retail Market Basket Analysis to spot
+              customer purchasing tendencies. Rules are expressed as: $\{A\}
+              \Rightarrow \{B\}$.
+            </p>
+
+            <div class="row g-3 my-3">
+              <div class="col-md-6">
+                <div
+                  class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25"
+                >
+                  <h6 class="fw-bold text-danger">Support ($S$)</h6>
+                  <p class="small text-secondary mb-1">
+                    Fraction of total transactions that contain both itemsets
+                    $A$ and $B$.
+                  </p>
+                  <span class="badge bg-secondary text-white"
+                    >Formula: $P(A \cup B)$</span
+                  >
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div
+                  class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25"
+                >
+                  <h6 class="fw-bold text-warning">Confidence ($C$)</h6>
+                  <p class="small text-secondary mb-1">
+                    Probability that transaction $B$ is purchased given that
+                    itemset $A$ is present.
+                  </p>
+                  <span class="badge bg-secondary text-white"
+                    >Formula: $P(B | A) = S(A \cup B) / S(A)$</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="p-3 rounded-3 bg-dark border border-warning border-opacity-25 mt-3"
+            >
+              <h6 class="fw-bold text-warning mb-1">
+                The Apriori Downward-Closure Property:
+              </h6>
+              <p class="small text-secondary mb-0">
+                Any subset of a frequent itemset must also be frequent.
+                Conversely, if an itemset is infrequent, all of its supersets
+                are pruned immediately.
+              </p>
+            </div>
+          </article>
+
+          <!-- MODULE 6: CLASSIFICATION -->
+          <article class="topic-card" id="m3">
+            <span class="topic-badge mb-2 d-inline-block">Module 06</span>
+            <h2 class="fw-bold text-white mb-3">
+              6. Classification & Decision Tree Induction
+            </h2>
+            <p class="text-secondary">
+              Supervised machine learning approaches deduce rule boundaries to
+              forecast discrete category tags. The
+              <strong>ID3 Algorithm</strong> selects splitting attributes using
+              maximum Information Gain.
+            </p>
+
+            <div
+              class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 mb-3 font-monospace"
+            >
+              <div class="text-warning small mb-1">
+                // Information Entropy Formula
+              </div>
+              <div class="text-white">
+                Entropy(D) = - &sum; (p<sub>i</sub> &times;
+                log<sub>2</sub>(p<sub>i</sub>))
+              </div>
+            </div>
+          </article>
+
+          <!-- MODULE 7: CLUSTERING -->
+          <article class="topic-card" id="m4">
+            <span class="topic-badge mb-2 d-inline-block">Module 07</span>
+            <h2 class="fw-bold text-white mb-3">
+              7. Cluster Analysis (K-Means Clustering)
+            </h2>
+            <p class="text-secondary">
+              An unsupervised machine learning method that groups records
+              according to shared Euclidean distance attributes.
+            </p>
+
+            <h5 class="fw-bold text-warning">Step-by-Step Algorithm:</h5>
+            <ol class="text-secondary small">
+              <li>
+                Randomly initialize $K$ centroids within the feature space.
+              </li>
+              <li>
+                Compute Euclidean distance between each data point and all
+                centroids.
+              </li>
+              <li>Assign each data point to its closest centroid.</li>
+              <li>
+                Recalculate centroid coordinates as the arithmetic mean of all
+                cluster members.
+              </li>
+              <li>
+                Repeat steps 2 through 4 until cluster memberships stop
+                shifting.
+              </li>
+            </ol>
+          </article>
+
+          <!-- MODULE 8: INTERVIEW QUESTIONS -->
+          <article class="topic-card" id="m5">
+            <span class="topic-badge mb-2 d-inline-block">Module 08</span>
+            <h2 class="fw-bold text-white mb-3">
+              8. Placement & University Examination Cheatsheet
+            </h2>
+
+            <div class="accordion" id="faqAccordion">
+              <div class="accordion-item bg-dark border-secondary">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button bg-dark text-warning"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#q1"
+                  >
+                    What is the fundamental difference between OLAP and OLTP?
+                  </button>
+                </h2>
+                <div id="q1" class="accordion-collapse collapse show">
+                  <div class="accordion-body text-secondary small">
+                    <strong>OLTP (Online Transaction Processing)</strong>
+                    handles day-to-day high-throughput operational insert/update
+                    queries (e.g., ATM withdrawals, order purchases).
+                    <strong>OLAP (Online Analytical Processing)</strong> handles
+                    read-intensive historical queries across multidimensional
+                    cubes for strategic executive decision support.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item bg-dark border-secondary mt-2">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button bg-dark text-warning collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#q2"
+                  >
+                    What is the difference between a Data Mart and a Data
+                    Warehouse?
+                  </button>
+                </h2>
+                <div id="q2" class="accordion-collapse collapse">
+                  <div class="accordion-body text-secondary small">
+                    A <strong>Data Warehouse</strong> is a centralized database
+                    containing consolidated, enterprise-wide historical records
+                    spanning all departments. A <strong>Data Mart</strong> is a
+                    smaller, departmental slice tailored exclusively for one
+                    division (such as Sales, Accounting, or Marketing).
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="py-4 border-top border-secondary border-opacity-25 mt-5">
+      <div class="container text-center small text-secondary">
+        <p class="mb-1 text-white-50">
+          &copy; 2025 EduGlow. Engineered & Curated with &#9889; by
+          <strong>Alok Rajpoot</strong>.
+        </p>
+        <p class="mb-0">
+          Data Warehouse & Mining Engine &bull; University Exam & Placement
+          Track
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

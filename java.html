@@ -1,0 +1,823 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Java & OOPs Mastery: Basic to Advanced - EduGlow | by Alok Rajpoot
+    </title>
+
+    <!-- Google Fonts: Plus Jakarta Sans & Fira Code -->
+    <link rel="icon" type="image/png" href="2.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --emerald-primary: #10b981;
+        --emerald-hover: #059669;
+        --dark-bg: #0f172a;
+        --code-bg: #1e1e2e;
+      }
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #f8fafc;
+        color: #334155;
+        scroll-behavior: smooth;
+      }
+
+      /* Navbar */
+      .navbar-eduglow {
+        background-color: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .brand-badge {
+        font-size: 0.65rem;
+        background-color: var(--emerald-primary);
+        color: #fff;
+        padding: 2px 6px;
+        border-radius: 4px;
+        margin-left: 5px;
+        vertical-align: middle;
+      }
+
+      /* Hero */
+      .notes-hero {
+        background: linear-gradient(135deg, #0f172a 0%, #064e3b 100%);
+        color: white;
+        padding: 65px 0 45px 0;
+        border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+      }
+
+      /* Sticky Sidebar TOC */
+      .sidebar-toc {
+        position: sticky;
+        top: 90px;
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+      }
+
+      .sidebar-toc a {
+        color: #64748b;
+        text-decoration: none;
+        font-size: 0.83rem;
+        display: block;
+        padding: 5px 10px;
+        border-radius: 6px;
+        transition: all 0.2s;
+      }
+
+      .sidebar-toc a:hover {
+        color: var(--emerald-hover);
+        background-color: #ecfdf5;
+        font-weight: 600;
+      }
+
+      /* Article / Cards */
+      .topic-card {
+        background: white;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+      }
+
+      .topic-badge {
+        background-color: #d1fae5;
+        color: #065f46;
+        font-weight: 700;
+        font-size: 0.72rem;
+        padding: 4px 10px;
+        border-radius: 20px;
+        text-transform: uppercase;
+      }
+
+      .topic-img {
+        border-radius: 12px;
+        max-height: 250px;
+        width: 100%;
+        object-fit: cover;
+        border: 1px solid #e2e8f0;
+      }
+
+      /* Syntax Highlight Code Block */
+      pre {
+        background-color: var(--code-bg);
+        color: #a6accd;
+        font-family: "Fira Code", monospace;
+        padding: 16px;
+        border-radius: 10px;
+        font-size: 0.83rem;
+        overflow-x: auto;
+        border: 1px solid #334155;
+      }
+
+      code {
+        font-family: "Fira Code", monospace;
+      }
+
+      .code-keyword {
+        color: #f07178;
+        font-weight: 600;
+      }
+      .code-class {
+        color: #ffcb6b;
+        font-weight: 600;
+      }
+      .code-method {
+        color: #82aaff;
+      }
+      .code-string {
+        color: #c3e88d;
+      }
+      .code-comment {
+        color: #676e95;
+        font-style: italic;
+      }
+
+      .btn-emerald {
+        background-color: var(--emerald-primary);
+        color: white;
+        font-weight: 600;
+      }
+
+      .btn-emerald:hover {
+        background-color: var(--emerald-hover);
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-eduglow sticky-top">
+      <div class="container">
+        <a
+          class="navbar-brand navbar-brand-glow fw-bold d-flex flex-column align-items-start lh-sm"
+          href="index.html"
+        >
+          <div>
+            <i class="bi bi-mortarboard-fill text-success"></i>
+            EduGlow
+            <span class="brand-badge">PRO v2</span>
+          </div>
+          <span
+            class="text-white-50 fw-normal"
+            style="
+              font-size: 0.65rem;
+              letter-spacing: 1px;
+              padding-left: 1.6rem;
+              margin-top: -2px;
+            "
+          >
+            by ALOK RAJPOOT
+          </span>
+        </a>
+
+        <div class="ms-auto d-flex gap-2">
+          <a href="index.html" class="btn btn-outline-light btn-sm px-3">
+            <i class="bi bi-arrow-left me-1"></i> Back to Home
+          </a>
+          <button class="btn btn-emerald btn-sm px-3" onclick="window.print()">
+            <i class="bi bi-printer me-1"></i> Print / Save PDF
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ================= HEADER HERO ================= -->
+    <header class="notes-hero">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-8">
+            <span
+              class="badge bg-success bg-opacity-25 text-white mb-2 px-3 py-1 rounded-pill"
+            >
+              <i class="bi bi-code-slash me-1"></i> From Beginner to Advanced
+            </span>
+            <h1 class="display-5 fw-bold text-white mb-2">
+              Java Programming & OOPs Mastery
+            </h1>
+            <p class="lead text-white-50 fs-6">
+              Authored and curated by <strong>Alok Rajpoot</strong>. A complete
+              guide from variables, control flows, and JVM internals, up to
+              Object-Oriented Principles, Multithreading, and Streams.
+            </p>
+          </div>
+          <div class="col-lg-4 text-lg-end d-none d-lg-block">
+            <img
+              src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=500&auto=format&fit=crop"
+              alt="Java Code Screen"
+              class="img-fluid rounded-4 shadow border border-secondary border-opacity-25"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= CONTENT LAYOUT ================= -->
+    <div class="container my-5">
+      <div class="row g-4">
+        <!-- Sticky Sidebar (Table of Contents) -->
+        <div class="col-lg-3 d-none d-lg-block">
+          <div class="sidebar-toc">
+            <h6 class="fw-bold mb-3 text-dark">
+              <i class="bi bi-compass text-success me-2"></i>Course Index
+            </h6>
+            <nav class="nav flex-column gap-1">
+              <small
+                class="text-uppercase fw-bold text-muted mt-2"
+                style="font-size: 0.7rem"
+                >Basic Java</small
+              >
+              <a href="#mod1">1. Introduction & JVM</a>
+              <a href="#mod2">2. Variables & Data Types</a>
+              <a href="#mod3">3. Conditionals & Loops</a>
+
+              <small
+                class="text-uppercase fw-bold text-muted mt-3"
+                style="font-size: 0.7rem"
+                >OOPs Foundations</small
+              >
+              <a href="#mod4">4. Classes & Objects</a>
+              <a href="#mod5">5. The 4 Pillars of OOP</a>
+              <a href="#mod6">6. Interfaces & Abstract Classes</a>
+
+              <small
+                class="text-uppercase fw-bold text-muted mt-3"
+                style="font-size: 0.7rem"
+                >Advanced Java</small
+              >
+              <a href="#mod7">7. Exceptions & Try-With-Resources</a>
+              <a href="#mod8">8. Collections & Generics</a>
+              <a href="#mod9">9. Multithreading & Virtual Threads</a>
+              <a href="#mod10">10. Java 8+ Lambdas & Streams</a>
+              <a href="#mod11">11. Interview Cheatsheet</a>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Main Notes Content -->
+        <div class="col-lg-9">
+          <!-- MODULE 1: INTRODUCTION & JVM -->
+          <article class="topic-card" id="mod1">
+            <span class="topic-badge mb-2 d-inline-block"
+              >Part 1: Foundations</span
+            >
+            <h2 class="fw-bold text-dark mb-3">
+              1. Introduction to Java & JVM Architecture
+            </h2>
+            <p>
+              Java is an object-oriented, class-based, high-level programming
+              language developed by Sun Microsystems in 1995. Its defining
+              architectural trait is
+              <strong>"Write Once, Run Anywhere" (WORA)</strong>.
+            </p>
+
+            <div class="my-3">
+              <img
+                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop"
+                alt="JVM Execution Engine"
+                class="topic-img mb-2"
+              />
+              <small class="text-muted d-block text-center"
+                >Figure 1: Java Source Code (.java) to Bytecode (.class)
+                compilation and JVM execution.</small
+              >
+            </div>
+
+            <h5 class="fw-bold mt-4">JDK vs JRE vs JVM:</h5>
+            <ul>
+              <li>
+                <strong>JDK (Java Development Kit):</strong> Everything needed
+                for software engineering—compiler (<code>javac</code>),
+                debuggers, tools, and the JRE.
+              </li>
+              <li>
+                <strong>JRE (Java Runtime Environment):</strong> The minimum
+                runtime engine containing class libraries (<code>rt.jar</code>)
+                to execute pre-compiled code.
+              </li>
+              <li>
+                <strong>JVM (Java Virtual Machine):</strong> Loads, verifies,
+                and executes platform-independent bytecode via the ClassLoader,
+                JIT compiler, and Garbage Collector.
+              </li>
+            </ul>
+          </article>
+
+          <!-- MODULE 2: VARIABLES & DATA TYPES -->
+          <article class="topic-card" id="mod2">
+            <span class="topic-badge mb-2 d-inline-block"
+              >Part 1: Foundations</span
+            >
+            <h2 class="fw-bold text-dark mb-3">
+              2. Data Types, Variables & Operators
+            </h2>
+            <p>
+              Java is statically typed. Variables must declare their data type
+              prior to value assignment.
+            </p>
+
+            <div class="table-responsive my-3">
+              <table class="table table-bordered align-middle">
+                <thead class="table-light">
+                  <tr>
+                    <th>Category</th>
+                    <th>Types</th>
+                    <th>Size</th>
+                    <th>Example</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Integer Types</strong></td>
+                    <td>
+                      <code>byte</code>, <code>short</code>, <code>int</code>,
+                      <code>long</code>
+                    </td>
+                    <td>1B, 2B, 4B, 8B</td>
+                    <td><code>int age = 21;</code></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Floating Point</strong></td>
+                    <td><code>float</code>, <code>double</code></td>
+                    <td>4B, 8B</td>
+                    <td><code>double cgpa = 8.95;</code></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Logical & Character</strong></td>
+                    <td><code>boolean</code>, <code>char</code></td>
+                    <td>1-bit, 2B (Unicode)</td>
+                    <td><code>char grade = 'A';</code></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Reference Types</strong></td>
+                    <td><code>String</code>, <code>Array</code>, Objects</td>
+                    <td>Heap Reference</td>
+                    <td><code>String name = "Alok";</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <!-- MODULE 3: CONDITIONALS & LOOPS -->
+          <article class="topic-card" id="mod3">
+            <span class="topic-badge mb-2 d-inline-block"
+              >Part 1: Foundations</span
+            >
+            <h2 class="fw-bold text-dark mb-3">
+              3. Control Statements & Iteration
+            </h2>
+            <p>
+              Direct the program's execution logic using branch statements and
+              loops.
+            </p>
+
+            <pre><code><span class="code-comment">// Control structures in action</span>
+<span class="code-keyword">public class</span> <span class="code-class">ControlDemo</span> {
+    <span class="code-keyword">public static void</span> <span class="code-method">main</span>(String[] args) {
+        <span class="code-keyword">int</span> marks = <span class="code-string">88</span>;
+
+        <span class="code-comment">// Conditional Statement</span>
+        <span class="code-keyword">if</span> (marks >= <span class="code-string">90</span>) {
+            System.out.println(<span class="code-string">"Grade: O"</span>);
+        } <span class="code-keyword">else if</span> (marks >= <span class="code-string">75</span>) {
+            System.out.println(<span class="code-string">"Grade: A"</span>);
+        }
+
+        <span class="code-comment">// Enhanced For-Each Loop</span>
+        String[] subjects = {<span class="code-string">"Java"</span>, <span class="code-string">"OOPs"</span>, <span class="code-string">"Spring Boot"</span>};
+        <span class="code-keyword">for</span> (String sub : subjects) {
+            System.out.println(<span class="code-string">"Subject: "</span> + sub);
+        }
+    }
+}</code></pre>
+          </article>
+
+          <!-- MODULE 4: CLASSES & OBJECTS -->
+          <article class="topic-card" id="mod4">
+            <span class="topic-badge mb-2 d-inline-block"
+              >Part 2: OOPs Mastery</span
+            >
+            <h2 class="fw-bold text-dark mb-3">
+              4. Classes, Objects & Constructors
+            </h2>
+            <p>
+              A <strong>Class</strong> is a blueprint or template, while an
+              <strong>Object</strong> is a real-world instance that occupies
+              memory in the Heap.
+            </p>
+
+            <div class="row g-3 my-3">
+              <div class="col-md-6">
+                <div class="p-3 bg-light rounded-3 border h-100">
+                  <h6 class="fw-bold text-success">
+                    <i class="bi bi-box me-1"></i> Class Members
+                  </h6>
+                  <p class="small text-muted mb-0">
+                    Composed of fields (state), methods (behavior), and
+                    constructors (instantiation routines).
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 bg-light rounded-3 border h-100">
+                  <h6 class="fw-bold text-primary">
+                    <i class="bi bi-gear me-1"></i> Constructors & `this`
+                  </h6>
+                  <p class="small text-muted mb-0">
+                    Special methods invoked upon object creation with
+                    <code>new</code>. The <code>this</code> keyword
+                    disambiguates instance fields from local parameters.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- MODULE 5: THE 4 PILLARS OF OOPS -->
+          <article class="topic-card" id="mod5">
+            <span class="topic-badge mb-2 d-inline-block"
+              >Part 2: OOPs Mastery</span
+            >
+            <h2 class="fw-bold text-dark mb-3">
+              5. The Four Core Pillars of OOPS
+            </h2>
+            <p>
+              The foundation of Object-Oriented design is built on four central
+              mechanisms:
+            </p>
+
+            <div class="row g-3 my-3">
+              <div class="col-md-6">
+                <div class="p-3 border rounded-3 bg-light">
+                  <h6 class="fw-bold text-success">
+                    <i class="bi bi-shield-lock me-1"></i> 1. Encapsulation
+                  </h6>
+                  <p class="small text-muted mb-0">
+                    Bundling state with behavior while restricting unauthorized
+                    direct access via <code>private</code> variables and public
+                    getters/setters.
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 border rounded-3 bg-light">
+                  <h6 class="fw-bold text-primary">
+                    <i class="bi bi-eye-slash me-1"></i> 2. Abstraction
+                  </h6>
+                  <p class="small text-muted mb-0">
+                    Exposing essential contracts while hiding low-level
+                    implementation details through interfaces and abstract
+                    classes.
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 border rounded-3 bg-light">
+                  <h6 class="fw-bold text-warning">
+                    <i class="bi bi-diagram-3 me-1"></i> 3. Inheritance
+                  </h6>
+                  <p class="small text-muted mb-0">
+                    Deriving new classes from existing classes using
+                    <code>extends</code> to promote code reuse and establish
+                    'IS-A' hierarchies.
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 border rounded-3 bg-light">
+                  <h6 class="fw-bold text-danger">
+                    <i class="bi bi-arrow-repeat me-1"></i> 4. Polymorphism
+                  </h6>
+                  <p class="small text-muted mb-0">
+                    Enabling methods to take multiple forms through Method
+                    Overloading (Compile-Time) and Method Overriding (Run-Time).
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <h5 class="fw-bold mt-4">Working OOP Code Walkthrough:</h5>
+            <pre><code><span class="code-comment">// 1. Encapsulation & Inheritance in practice</span>
+<span class="code-keyword">class</span> <span class="code-class">Student</span> {
+    <span class="code-keyword">private</span> String name; <span class="code-comment">// Encapsulated state</span>
+
+    <span class="code-keyword">public</span> <span class="code-class">Student</span>(String name) {
+        <span class="code-keyword">this</span>.name = name;
+    }
+
+    <span class="code-keyword">public</span> String <span class="code-method">getName</span>() {
+        <span class="code-keyword">return this</span>.name;
+    }
+
+    <span class="code-keyword">public void</span> <span class="code-method">study</span>() {
+        System.out.println(name + <span class="code-string">" is studying core fundamentals."</span>);
+    }
+}
+
+<span class="code-comment">// Polymorphism: Overriding inherited behavior</span>
+<span class="code-keyword">class</span> <span class="code-class">EngineeringStudent</span> <span class="code-keyword">extends</span> <span class="code-class">Student</span> {
+    <span class="code-keyword">public</span> <span class="code-class">EngineeringStudent</span>(String name) {
+        <span class="code-keyword">super</span>(name);
+    }
+
+    <span class="code-keyword">@Override</span>
+    <span class="code-keyword">public void</span> <span class="code-method">study</span>() {
+        System.out.println(getName() + <span class="code-string">" is mastering Java, Spring Boot & DSA!"</span>);
+    }
+}</code></pre>
+          </article>
+
+          <!-- MODULE 6: INTERFACES & ABSTRACT CLASSES -->
+          <article class="topic-card" id="mod6">
+            <span class="topic-badge mb-2 d-inline-block"
+              >Part 2: OOPs Mastery</span
+            >
+            <h2 class="fw-bold text-dark mb-3">
+              6. Interfaces vs Abstract Classes
+            </h2>
+            <p>
+              Selecting whether to bind a contract with an interface or provide
+              partially complete functionality with an abstract class is an
+              important architectural design choice.
+            </p>
+
+            <div class="table-responsive my-3">
+              <table class="table table-bordered align-middle">
+                <thead class="table-light">
+                  <tr>
+                    <th>Criteria</th>
+                    <th>Abstract Class</th>
+                    <th>Interface (Java 8+)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="fw-bold">Inheritance Model</td>
+                    <td>Single inheritance (<code>extends</code>)</td>
+                    <td>Multiple inheritance (<code>implements</code>)</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold">Constructors</td>
+                    <td>Yes (called via <code>super()</code>)</td>
+                    <td>Cannot declare constructors</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-bold">Method Types</td>
+                    <td>Abstract & concrete methods with full state</td>
+                    <td>Abstract, default, and static methods</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <!-- MODULE 7: EXCEPTION HANDLING -->
+          <article class="topic-card" id="mod7">
+            <span class="topic-badge mb-2 d-inline-block"
+              >Part 3: Advanced Java</span
+            >
+            <h2 class="fw-bold text-dark mb-3">
+              7. Exception Handling & Try-With-Resources
+            </h2>
+            <p>
+              Exceptions in Java represent runtime error events. Robust programs
+              catch anomalies defensively without leaking sockets or files.
+            </p>
+
+            <div class="my-3">
+              <img
+                src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800&auto=format&fit=crop"
+                alt="Defensive Software Programming"
+                class="topic-img mb-2"
+              />
+            </div>
+
+            <pre><code><span class="code-keyword">import</span> java.io.*;
+
+<span class="code-keyword">public class</span> <span class="code-class">SafeFileIO</span> {
+    <span class="code-comment">// Try-With-Resources automatically closes AutoCloseable streams</span>
+    <span class="code-keyword">public static void</span> <span class="code-method">readFile</span>(String filePath) {
+        <span class="code-keyword">try</span> (BufferedReader br = <span class="code-keyword">new</span> BufferedReader(<span class="code-keyword">new</span> FileReader(filePath))) {
+            System.out.println(br.readLine());
+        } <span class="code-keyword">catch</span> (IOException e) {
+            System.err.println(<span class="code-string">"Diagnostic Trace: "</span> + e.getMessage());
+        }
+    }
+}</code></pre>
+          </article>
+
+          <!-- MODULE 8: COLLECTIONS FRAMEWORK -->
+          <article class="topic-card" id="mod8">
+            <span class="topic-badge mb-2 d-inline-block"
+              >Part 3: Advanced Java</span
+            >
+            <h2 class="fw-bold text-dark mb-3">
+              8. Java Collections Framework & Generics
+            </h2>
+            <p>
+              The Collections Framework replaces static arrays with dynamic,
+              high-performance data structures located in
+              <code>java.util</code>.
+            </p>
+
+            <div class="row g-3 my-3">
+              <div class="col-md-4">
+                <div class="border rounded-3 p-3 bg-light text-center h-100">
+                  <h6 class="fw-bold text-success">List Interface</h6>
+                  <p class="small text-muted mb-0">
+                    <code>ArrayList</code> (O(1) random index reads) and
+                    <code>LinkedList</code> (fast node insertions).
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="border rounded-3 p-3 bg-light text-center h-100">
+                  <h6 class="fw-bold text-primary">Set Interface</h6>
+                  <p class="small text-muted mb-0">
+                    <code>HashSet</code> (enforces uniqueness via hashing) and
+                    <code>TreeSet</code> (sorted Red-Black tree).
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="border rounded-3 p-3 bg-light text-center h-100">
+                  <h6 class="fw-bold text-purple text-dark">Map Key-Value</h6>
+                  <p class="small text-muted mb-0">
+                    <code>HashMap</code> (hash buckets) and
+                    <code>ConcurrentHashMap</code> (thread-safe segment locks).
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- MODULE 9: MULTITHREADING -->
+          <article class="topic-card" id="mod9">
+            <span class="topic-badge mb-2 d-inline-block"
+              >Part 3: Advanced Java</span
+            >
+            <h2 class="fw-bold text-dark mb-3">
+              9. Multithreading & Concurrency Management
+            </h2>
+            <p>
+              Multithreading enables concurrent execution of instructions,
+              taking full advantage of modern multi-core processors.
+            </p>
+
+            <pre><code><span class="code-keyword">import</span> java.util.concurrent.*;
+
+<span class="code-keyword">public class</span> <span class="code-class">ConcurrencyDemo</span> {
+    <span class="code-keyword">public static void</span> <span class="code-method">main</span>(String[] args) {
+        <span class="code-comment">// Utilize ExecutorService pools instead of instantiating raw threads</span>
+        ExecutorService pool = Executors.newFixedThreadPool(<span class="code-string">2</span>);
+
+        pool.execute(() -> {
+            System.out.println(<span class="code-string">"Executing asynchronously on: "</span> + Thread.currentThread().getName());
+        });
+
+        pool.shutdown();
+    }
+}</code></pre>
+          </article>
+
+          <!-- MODULE 10: JAVA 8+ LAMBDAS & STREAMS -->
+          <article class="topic-card" id="mod10">
+            <span class="topic-badge mb-2 d-inline-block"
+              >Part 3: Advanced Java</span
+            >
+            <h2 class="fw-bold text-dark mb-3">
+              10. Java 8+ Lambdas, Functional Interfaces & Streams
+            </h2>
+            <p>
+              Functional programming in Java allows for declarative data
+              transformations without manual loop management.
+            </p>
+
+            <pre><code><span class="code-keyword">import</span> java.util.*;
+<span class="code-keyword">import</span> java.util.stream.Collectors;
+
+<span class="code-keyword">public class</span> <span class="code-class">StreamsDemo</span> {
+    <span class="code-keyword">public static void</span> <span class="code-method">main</span>(String[] args) {
+        List&lt;String&gt; studentRoster = Arrays.asList(<span class="code-string">"Alok"</span>, <span class="code-string">"Ankit"</span>, <span class="code-string">"Rahul"</span>, <span class="code-string">"Amit"</span>);
+
+        <span class="code-comment">// Filter, transform and collect in a declarative pipeline</span>
+        List&lt;String&gt; filteredList = studentRoster.stream()
+            .filter(name -> name.startsWith(<span class="code-string">"A"</span>))
+            .map(String::toUpperCase)
+            .collect(Collectors.toList());
+
+        System.out.println(filteredList); <span class="code-comment">// [ALOK, ANKIT, AMIT]</span>
+    }
+}</code></pre>
+          </article>
+
+          <!-- MODULE 11: INTERVIEW CHEATSHEET -->
+          <article class="topic-card" id="mod11">
+            <span class="topic-badge mb-2 d-inline-block"
+              >Part 4: Placements</span
+            >
+            <h2 class="fw-bold text-dark mb-3">
+              11. High-Frequency Technical Interview Questions
+            </h2>
+
+            <div class="accordion" id="interviewFAQ">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#q1"
+                  >
+                    Why is String immutable in Java?
+                  </button>
+                </h2>
+                <div id="q1" class="accordion-collapse collapse show">
+                  <div class="accordion-body text-muted small">
+                    Strings are immutable for <strong>Security</strong> (network
+                    parameters and database credentials remain tamper-proof),
+                    <strong>Thread Safety</strong> (read-only references can be
+                    shared across threads without synchronization locks), and
+                    <strong>Memory Efficiency</strong> via the String Constant
+                    Pool (SCP).
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#q2"
+                  >
+                    What is the contract between equals() and hashCode()?
+                  </button>
+                </h2>
+                <div id="q2" class="accordion-collapse collapse">
+                  <div class="accordion-body text-muted small">
+                    If two objects are considered equal via
+                    <code>equals(Object o)</code>, their
+                    <code>hashCode()</code> integers
+                    <strong>must match</strong>. Failing to uphold this contract
+                    breaks hash collections like <code>HashMap</code> and
+                    <code>HashSet</code>, leading to silent retrieval failures.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer
+      class="bg-dark text-white py-4 mt-5 border-top border-secondary border-opacity-25"
+    >
+      <div class="container text-center small text-white-50">
+        <p class="mb-1">
+          &copy; 2025 EduGlow. Curated & Engineered with ❤️ by
+          <strong>Alok Rajpoot</strong>.
+        </p>
+        <p class="mb-0">
+          University Syllabus Aligned &bull; Full-Stack Computer Science & MCA
+          Reference
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
